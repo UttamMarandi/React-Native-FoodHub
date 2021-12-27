@@ -12,6 +12,7 @@ import Animated, {
   useAnimatedStyle,
   withTiming,
 } from "react-native-reanimated";
+import LinearGradient from "react-native-linear-gradient";
 import { useDrawerProgress } from "@react-navigation/drawer";
 import { connect } from "react-redux";
 import { setSelectedTab } from "../stores/tab/tabAction";
@@ -52,9 +53,7 @@ const MainLayout = ({ navigation, selectedTab, setSelectedTab }) => {
     <Animated.View
       style={{
         flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "white",
+        backgroundColor: COLORS.white,
         ...animatedStyle,
       }}
     >
@@ -105,6 +104,22 @@ const MainLayout = ({ navigation, selectedTab, setSelectedTab }) => {
       </View>
 
       {/* Footer */}
+      <View style={{ height: 100, justifytontent: "flex-end" }}>
+        <LinearGradient
+          start={{ x: 0, y: 0 }}
+          end={{ x: 0, y: 4 }}
+          colors={[COLORS.transparent, COLORS.lightGray1]}
+          style={{
+            position: "absolute",
+            top: -20,
+            left: 0,
+            right: 0,
+            height: 100,
+            borderTopLeftRadius: 15,
+            borderTopRightRadius: 15,
+          }}
+        />
+      </View>
     </Animated.View>
   );
 };
@@ -121,3 +136,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainLayout);
+
+// Bug fix
+
+//In order to render the shadow effect using <LinearGradient/> we have to remove alignItems and justifyContent from parent container
