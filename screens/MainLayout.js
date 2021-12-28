@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import {
   View,
   Text,
@@ -16,7 +16,6 @@ import LinearGradient from "react-native-linear-gradient";
 import { useDrawerProgress } from "@react-navigation/drawer";
 import { connect } from "react-redux";
 import { setSelectedTab } from "../stores/tab/tabAction";
-import { Home } from "../screens";
 import { Header } from "../components";
 import {
   COLORS,
@@ -27,32 +26,56 @@ import {
   dummyData,
 } from "../constants";
 
-const TabButton = ({ label, icon, isFocused, onPress }) => {
+// screens
+import Home from "./Home/Home";
+import Search from "./Search/Search";
+import Cart from "./Cart/Cart";
+import Favourite from "./Favourite/Favourite";
+import Notification from "./Notification/Notification";
+
+const TabButton = ({
+  label,
+  icon,
+  isFocused,
+  onPress,
+  outerContainerStyle,
+  innerContainerStyle,
+}) => {
   return (
     <TouchableWithoutFeedback onPress={onPress}>
       <Animated.View
-        style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+        style={[
+          { flex: 1, alignItems: "center", justifyContent: "center" },
+          outerContainerStyle,
+        ]}
       >
         <Animated.View
-          style={{
-            flexDirection: "row",
-            width: "80%",
-            height: 50,
-            alignItems: "center",
-            justifyContent: "center",
-            borderRadius: 25,
-          }}
+          style={[
+            {
+              flexDirection: "row",
+              width: "80%",
+              height: 50,
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: 25,
+            },
+            innerContainerStyle,
+          ]}
         >
           <Image
             source={icon}
-            style={{ width: 20, height: 20, tintColor: COLORS.gray }}
+            style={{
+              width: 20,
+              height: 20,
+              tintColor: isFocused ? COLORS.white : COLORS.gray,
+            }}
           />
           {isFocused && (
             <Text
               numberOfLines={1}
               style={{
                 marginLeft: SIZES.base,
-                color: COLORS.gray,
+                color: COLORS.white,
                 ...FONTS.h3,
               }}
             >
@@ -66,9 +89,76 @@ const TabButton = ({ label, icon, isFocused, onPress }) => {
 };
 
 const MainLayout = ({ navigation, selectedTab, setSelectedTab }) => {
+  const flatListRef = useRef();
+
   useEffect(() => {
     setSelectedTab(constants.screens.home);
   }, []);
+
+  useEffect(() => {
+    if (selectedTab == constants.screens.home) {
+      homeTabFlex.value = withTiming(4, { duration: 500 });
+      homeTabColor.value = withTiming(COLORS.primary, { duration: 500 });
+      flatListRef?.current?.scrollToIndex({
+        index: 0,
+        animated: false,
+      });
+    } else {
+      homeTabFlex.value = withTiming(1, { duration: 500 });
+      homeTabColor.value = withTiming(COLORS.white, { duration: 500 });
+    }
+
+    if (selectedTab == constants.screens.search) {
+      flatListRef?.current?.scrollToIndex({
+        index: 1,
+        animated: false,
+      });
+      searchTabFlex.value = withTiming(4, { duration: 500 });
+      searchTabColor.value = withTiming(COLORS.primary, { duration: 500 });
+    } else {
+      searchTabFlex.value = withTiming(1, { duration: 500 });
+      searchTabColor.value = withTiming(COLORS.white, { duration: 500 });
+    }
+
+    if (selectedTab == constants.screens.cart) {
+      flatListRef?.current?.scrollToIndex({
+        index: 2,
+        animated: false,
+      });
+      cartTabFlex.value = withTiming(4, { duration: 500 });
+      cartTabColor.value = withTiming(COLORS.primary, { duration: 500 });
+    } else {
+      cartTabFlex.value = withTiming(1, { duration: 500 });
+      cartTabColor.value = withTiming(COLORS.white, { duration: 500 });
+    }
+
+    if (selectedTab == constants.screens.favourite) {
+      flatListRef?.current?.scrollToIndex({
+        index: 3,
+        animated: false,
+      });
+      favouriteTabFlex.value = withTiming(4, { duration: 500 });
+      favouriteTabColor.value = withTiming(COLORS.primary, { duration: 500 });
+    } else {
+      favouriteTabFlex.value = withTiming(1, { duration: 500 });
+      favouriteTabColor.value = withTiming(COLORS.white, { duration: 500 });
+    }
+
+    if (selectedTab == constants.screens.notification) {
+      flatListRef?.current?.scrollToIndex({
+        index: 4,
+        animated: false,
+      });
+      notificationTabFlex.value = withTiming(4, { duration: 500 });
+      notificationTabColor.value = withTiming(COLORS.primary, {
+        duration: 500,
+      });
+    } else {
+      notificationTabFlex.value = withTiming(1, { duration: 500 });
+      notificationTabColor.value = withTiming(COLORS.white, { duration: 500 });
+    }
+  }, [selectedTab]);
+
   //Tab Animation
 
   //====>Reanimated shared value
@@ -210,7 +300,31 @@ const MainLayout = ({ navigation, selectedTab, setSelectedTab }) => {
 
       {/* Content */}
       <View style={{ flex: 1 }}>
-        <Text>MainLayout</Text>
+        <FlatList
+          ref={flatListRef}
+          // we need the flatlistRef to scroll to the index in accordance to the selected tab
+          horizontal
+          scrollEnabled={false}
+          pagingEnabled
+          snapToAlignment="center"
+          snapToInterval={SIZES.width}
+          showsHorizontalScrollIndicator={false}
+          data={constants.bottom_tabs}
+          keyExtractor={(item) => `${item.id}`}
+          renderItem={({ item, index }) => {
+            return (
+              <View style={{ height: SIZES.height, width: SIZES.width }}>
+                {item.label == constants.screens.home && <Home />}
+                {item.label == constants.screens.search && <Search />}
+                {item.label == constants.screens.cart && <Cart />}
+                {item.label == constants.screens.favourite && <Favourite />}
+                {item.label == constants.screens.notification && (
+                  <Notification />
+                )}
+              </View>
+            );
+          }}
+        />
       </View>
 
       {/* Footer */}
