@@ -1,6 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
+import "react-native-gesture-handler";
 
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
