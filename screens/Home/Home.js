@@ -11,6 +11,7 @@ import {
 import { FONTS, SIZES, COLORS, icons, dummyData } from "../../constants";
 
 import { HorizontalFoodCard } from "../../components";
+import { VerticalFoodCard } from "../../components";
 
 const Section = ({ title, onPress, children }) => {
   return (
@@ -43,6 +44,7 @@ const Home = () => {
   const [selectedCategoryId, setSelectedCategoryId] = useState(1);
   const [selectedMenuType, setSelectedMenuType] = useState(1);
   const [recommends, setRecommends] = useState([]);
+  const [popular, setPopular] = useState([]);
   const [menuList, setMenuList] = useState([]);
 
   useEffect(() => {
@@ -52,11 +54,19 @@ const Home = () => {
   // Handler
 
   function handleChangeCategory(categoryId, menuTypeId) {
+    // Retrieve the popular menu
+    let selectedPopular = dummyData.menu.find((a) => a.name == "Popular");
+
     //Retrieve the recommended menu
     let selectedRecommend = dummyData.menu.find((a) => a.name == "Recommended");
 
     //Find the menu based on menu type id
     let selectedMenu = dummyData.menu.find((a) => a.id == menuTypeId);
+
+    //set the popular menu based on category id
+    setPopular(
+      selectedPopular?.list.filter((a) => a.categories.includes(categoryId))
+    );
 
     //Set the recommended menu based on the categoryid
     setRecommends(
@@ -185,6 +195,111 @@ const Home = () => {
       </Section>
     );
   }
+
+  function renderPopularSection() {
+    return (
+      <Section
+        title="Popular Near You"
+        onPress={() => console.log("show all popular items")}
+      >
+        <FlatList
+          data={popular}
+          keyExtractor={(item) => `${item.id}`}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          renderItem={({ item, index }) => (
+            <VerticalFoodCard
+              containerStyle={{
+                marginLeft: index == 0 ? SIZES.padding : 18,
+                marginRight: index.length - 1 ? SIZES.padding : 0,
+              }}
+              item={item}
+              onPress={() => console.log("vertical food card")}
+            />
+          )}
+        />
+      </Section>
+    );
+  }
+
+  function renderFoodCategories() {
+    return (
+      <FlatList
+        data={dummyData.categories}
+        keyExtractor={(item) => `${item.id}`}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        renderItem={({ item, index }) => (
+          <TouchableOpacity
+            style={{
+              flexDirection: "row",
+              height: 55,
+
+              marginTop: SIZES.padding,
+              marginLeft: index == 0 ? SIZES.padding : SIZES.radius,
+              marginRight:
+                index == dummyData.categories.length - 1 ? SIZES.padding : 0,
+              paddingHorizontal: 8,
+              borderRadius: SIZES.radius,
+              backgroundColor:
+                selectedCategoryId == item.id
+                  ? COLORS.primary
+                  : COLORS.lightGray2,
+            }}
+            onPress={() => {
+              setSelectedCategoryId(item.id);
+              handleChangeCategory(item.id, selectedMenuType);
+            }}
+          >
+            <Image
+              source={item.icon}
+              style={{ marginTop: 5, height: 50, width: 50 }}
+            />
+            <Text
+              style={{
+                alignSelf: "center",
+                marginRight: SIZES.base,
+                color:
+                  selectedCategoryId == item.id
+                    ? COLORS.white
+                    : COLORS.darkGray,
+                ...FONTS.h3,
+              }}
+            >
+              {item.name}
+            </Text>
+          </TouchableOpacity>
+        )}
+      />
+    );
+  }
+
+  function renderDeliveryTo() {
+    return (
+      <View
+        style={{ marginTop: SIZES.padding, marginHorizontal: SIZES.padding }}
+      >
+        <Text style={{ color: COLORS.primary, ...FONTS.body3 }}>
+          DELIVERY TO
+        </Text>
+
+        <TouchableOpacity
+          style={{
+            flexDirection: "row",
+            marginTop: SIZES.base,
+            alignItems: "center",
+          }}
+        >
+          <Text style={{ ...FONTS.h3 }}>{dummyData?.myProfile?.address}</Text>
+          <Image
+            source={icons.down_arrow}
+            style={{ marginLeft: SIZES.base, height: 20, width: 20 }}
+          />
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
   return (
     <View style={{ flex: 1 }}>
       {/* Search */}
@@ -197,6 +312,14 @@ const Home = () => {
         showsHorizontalScrollIndicator={false}
         ListHeaderComponent={
           <View>
+            {/* Delivery to */}
+            {renderDeliveryTo()}
+
+            {/* Food Categories  */}
+            {renderFoodCategories()}
+            {/* Popular */}
+            {renderPopularSection()}
+
             {/* Recommended */}
 
             {renderRecommendedSection()}
