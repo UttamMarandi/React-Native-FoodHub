@@ -7,7 +7,7 @@ import {
   TouchableWithoutFeedback,
   Modal,
 } from "react-native";
-import { IconButton, TextButton } from "../../components";
+import { IconButton, TextButton, TextIconButton } from "../../components";
 import { COLORS, FONTS, SIZES, constants, icons } from "../../constants";
 import { TwoPointSlider } from "../../components";
 
@@ -129,6 +129,40 @@ const FilterModal = ({ isVisible, onClose }) => {
     );
   }
 
+  function renderRatings() {
+    return (
+      <Section title="Raings" containerStyle={{ marginTop: 40 }}>
+        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+          {constants.ratings.map((item, index) => {
+            return (
+              <TextIconButton
+                key={`Ratings-${index}`}
+                containerStyle={{
+                  flex: 1,
+                  height: 50,
+                  margin: 5,
+                  alignItems: "center",
+                  borderRadius: SIZES.base,
+                  backgroundColor:
+                    item.id == ratings ? COLORS.primary : COLORS.lightGray2,
+                }}
+                label={item.label}
+                labelStyle={{
+                  color: item.id == ratings ? COLORS.white : COLORS.gray,
+                }}
+                icon={icons.star}
+                iconStyle={{
+                  tintColor: item.id == ratings ? COLORS.white : COLORS.gray,
+                }}
+                onPress={() => setRatings(item.id)}
+              />
+            );
+          })}
+        </View>
+      </Section>
+    );
+  }
+
   return (
     <Modal animationType="fade" visible={isVisible} transparent={true}>
       <View style={{ flex: 1, backgroundColor: COLORS.transparentBlack7 }}>
@@ -191,6 +225,12 @@ const FilterModal = ({ isVisible, onClose }) => {
 
             {/* Princing Range */}
             {renderPricingRange()}
+
+            {/* Rating */}
+            {renderRatings()}
+
+            {/* Tags */}
+            {renderTagss()}
           </ScrollView>
         </Animated.View>
       </View>

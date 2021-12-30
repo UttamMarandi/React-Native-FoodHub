@@ -4,6 +4,7 @@ import VerticalFoodCard from "./VerticalFoodCard";
 import IconButton from "./IconButton";
 import TwoPointSlider from "./TwoPointSlider";
 import TextButton from "./TextButton";
+import TextIconButton from "./TextIconButton";
 
 export {
   Header,
@@ -12,4 +13,5 @@ export {
   IconButton,
   TwoPointSlider,
   TextButton,
+  TextIconButton,
 };
