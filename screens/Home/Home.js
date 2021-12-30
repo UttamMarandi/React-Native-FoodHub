@@ -12,6 +12,7 @@ import { FONTS, SIZES, COLORS, icons, dummyData } from "../../constants";
 
 import { HorizontalFoodCard } from "../../components";
 import { VerticalFoodCard } from "../../components";
+import FilterModal from "../Home/FilterModal";
 
 const Section = ({ title, onPress, children }) => {
   return (
@@ -45,6 +46,7 @@ const Home = () => {
   const [selectedMenuType, setSelectedMenuType] = useState(1);
   const [recommends, setRecommends] = useState([]);
   const [popular, setPopular] = useState([]);
+  const [showFilterModal, setShowFilterModal] = useState(false);
   const [menuList, setMenuList] = useState([]);
 
   useEffect(() => {
@@ -112,7 +114,7 @@ const Home = () => {
 
         {/* Filter button */}
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => setShowFilterModal(true)}>
           <Image
             source={icons.filter}
             style={{ height: 20, width: 20, tintColor: COLORS.black }}
@@ -304,6 +306,15 @@ const Home = () => {
     <View style={{ flex: 1 }}>
       {/* Search */}
       {renderSearch()}
+
+      {/* Filter modal */}
+      {showFilterModal && (
+        <FilterModal
+          isVisible={showFilterModal}
+          onClose={() => setShowFilterModal(false)}
+        />
+      )}
+
       {/* List */}
 
       <FlatList
@@ -347,6 +358,7 @@ const Home = () => {
             />
           );
         }}
+        ListFooterComponent={() => <View style={{ height: 200 }} />}
       />
     </View>
   );
@@ -358,3 +370,12 @@ export default Home;
 
 // Solution :
 // set paddingTop and paddingBottom to 0
+
+//bug fix : The bottom portion of flatlist is covered by tab navigator
+// Solution
+//add a view in ListFooterComponent props of Flatlist and give the View relevant height
+
+// Bug fix: Filter modal not closing
+
+//Solution : typo issue
+//it shoould be ```showFilterModal && <FilterModal/> ``` instead of ```setShowFilterModal && <FilterModal/>```
