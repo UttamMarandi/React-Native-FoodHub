@@ -27,7 +27,6 @@ const TwoPointSlider = ({
       }}
       minMarkerOverlapDistance={50}
       customMarker={(e) => {
-        console.log("prefix2", e.prefix);
         return (
           <View
             style={{

@@ -3,6 +3,7 @@ import HorizontalFoodCard from "./HorizontalFoodCard";
 import VerticalFoodCard from "./VerticalFoodCard";
 import IconButton from "./IconButton";
 import TwoPointSlider from "./TwoPointSlider";
+import TextButton from "./TextButton";
 
 export {
   Header,
@@ -10,4 +11,5 @@ export {
   VerticalFoodCard,
   IconButton,
   TwoPointSlider,
+  TextButton,
 };

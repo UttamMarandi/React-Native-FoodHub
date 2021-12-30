@@ -7,7 +7,7 @@ import {
   TouchableWithoutFeedback,
   Modal,
 } from "react-native";
-import { IconButton } from "../../components";
+import { IconButton, TextButton } from "../../components";
 import { COLORS, FONTS, SIZES, constants, icons } from "../../constants";
 import { TwoPointSlider } from "../../components";
 
@@ -21,6 +21,10 @@ const Section = ({ containerStyle, title, children }) => {
 };
 
 const FilterModal = ({ isVisible, onClose }) => {
+  const [deliveryTime, setDeliveryTime] = useState("");
+  const [ratings, setRatings] = useState("");
+  const [tags, setTags] = useState("");
+
   const modalAnimatedValue = useRef(new Animated.Value(0)).current;
 
   const [showFilterModal, setShowFilterModal] = useState(isVisible);
@@ -62,6 +66,62 @@ const FilterModal = ({ isVisible, onClose }) => {
             min={1}
             max={20}
             postfix="km"
+            onValuesChange={(values) => console.log(values)}
+          />
+        </View>
+      </Section>
+    );
+  }
+
+  function renderDeliveryTime() {
+    return (
+      <Section title="Delivery Time " containerStyle={{ marginTop: 40 }}>
+        <View
+          style={{
+            flexDirection: "row",
+            flexWrap: "wrap",
+            marginTop: SIZES.radius,
+          }}
+        >
+          {constants.delivery_time.map((item, index) => {
+            return (
+              <TextButton
+                key={`delivery_time-${index}`}
+                label={item.label}
+                labelStyle={{
+                  color: item.id == deliveryTime ? COLORS.white : COLORS.gray,
+                  ...FONTS.body3,
+                }}
+                buttonContainerStyle={{
+                  width: "30%",
+                  height: 50,
+                  margin: 5,
+                  alignItems: "center",
+                  borderRadius: SIZES.base,
+                  backgroundColor:
+                    item.id == deliveryTime
+                      ? COLORS.primary
+                      : COLORS.lightGray2,
+                }}
+                onPress={() => setDeliveryTime(item.id)}
+              />
+            );
+          })}
+        </View>
+      </Section>
+    );
+  }
+
+  function renderPricingRange() {
+    return (
+      <Section title="Pricing Range">
+        <View style={{ alignItems: "center" }}>
+          <TwoPointSlider
+            values={[10, 30]}
+            min={1}
+            max={100}
+            prefix="$"
+            postfix=""
             onValuesChange={(values) => console.log(values)}
           />
         </View>
@@ -125,6 +185,12 @@ const FilterModal = ({ isVisible, onClose }) => {
           >
             {/* Distance */}
             {renderDistance()}
+
+            {/* renderDeloveryTime */}
+            {renderDeliveryTime()}
+
+            {/* Princing Range */}
+            {renderPricingRange()}
           </ScrollView>
         </Animated.View>
       </View>
