@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import "react-native-gesture-handler";
+import SplashScreen from "react-native-splash-screen";
 
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
@@ -25,6 +26,10 @@ const Stack = createStackNavigator();
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 const App = () => {
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
+
   return (
     <Provider store={store}>
       <NavigationContainer>

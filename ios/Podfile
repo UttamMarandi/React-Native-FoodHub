@@ -18,6 +18,8 @@ target 'FoodDeliveryApp' do
   pod 'GoogleMaps'
   pod 'Google-Maps-iOS-Utils'
 
+  pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
+
   target 'FoodDeliveryAppTests' do
     inherit! :complete
     # Pods for testing
