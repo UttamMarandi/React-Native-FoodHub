@@ -11,7 +11,7 @@ const FormInput = ({
   onChange,
   secureTextEntry,
   keyboardType = "default",
-  autoComplete = "off",
+  autoCompleteType = "off",
   autoCapitalize = "none",
   errorMsg = "",
 }) => {
@@ -29,7 +29,8 @@ const FormInput = ({
           flexDirection: "row",
           height: 55,
           paddingHorizontal: SIZES.padding,
-          borderRadius: COLORS.lightGray2,
+          borderRadius: SIZES.radius,
+          backgroundColor: COLORS.lightGray2,
         }}
       >
         {prependComponent}
@@ -41,7 +42,7 @@ const FormInput = ({
           keyboardType={keyboardType}
           autoCapitalize={autoCapitalize}
           onChange={(text) => onChange(text)}
-          autoComplete={autoComplete}
+          autoCompleteType={autoCompleteType}
         />
         {appendComponent}
       </View>
