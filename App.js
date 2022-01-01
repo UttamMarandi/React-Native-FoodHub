@@ -9,6 +9,8 @@ import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import rootReducer from "./stores/rootReducer";
 
+import OnBoarding from "./screens/OnBoarding/OnBoarding";
+
 import {
   FoodDetail,
   Checkout,
@@ -35,8 +37,9 @@ const App = () => {
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{ headerShown: false }}
-          initialRouteName={"Home"}
+          initialRouteName={"OnBoard"}
         >
+          <Stack.Screen name="OnBoard" component={OnBoarding} />
           <Stack.Screen name="Home" component={CustomDrawer} />
         </Stack.Navigator>
       </NavigationContainer>
