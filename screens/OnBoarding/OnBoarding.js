@@ -87,49 +87,70 @@ const OnBoarding = ({ navigation }) => {
         </View>
 
         {/* Buttons */}
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            paddingHorizontal: SIZES.padding,
-            marginVertical: SIZES.padding,
-          }}
-        >
-          <TextButton
-            label="Skip"
-            buttonContainerStyle={{
-              paddingHorizontal: 20,
-              paddingVertical: 12,
-              backgroundColor: "transparent",
+        {currentIndex < constants.onboarding_screens.length - 1 && (
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              paddingHorizontal: SIZES.padding,
+              marginVertical: SIZES.padding,
             }}
-            labelStyle={{
-              color: COLORS.primary,
-            }}
-            onPress={() => navigation.replace("SignIn")}
-          />
-          <TextButton
-            label="Next"
-            buttonContainerStyle={{
-              paddingHorizontal: 40,
-              paddingVertical: 12,
-              borderRadius: SIZES.radius,
-            }}
-            onPress={() => {
-              let index = Math.ceil(Number(scrollX._value / SIZES.width));
-              // scrollX value is the width of each screen
-              flatListRef?.current?.scrollToIndex({
-                index: index + 1,
-                animated: true,
-              });
+          >
+            <TextButton
+              label="Skip"
+              buttonContainerStyle={{
+                paddingHorizontal: 20,
+                paddingVertical: 12,
+                backgroundColor: "transparent",
+              }}
+              labelStyle={{
+                color: COLORS.primary,
+              }}
+              onPress={() => navigation.replace("SignIn")}
+            />
+            <TextButton
+              label="Next"
+              buttonContainerStyle={{
+                paddingHorizontal: 40,
+                paddingVertical: 12,
+                borderRadius: SIZES.radius,
+              }}
+              onPress={() => {
+                let index = Math.ceil(Number(scrollX._value / SIZES.width));
+                // scrollX value is the width of each screen
 
-              if (index < constants.onboarding_screens.length - 1) {
+                // if (index < constants.onboarding_screens.length - 1) {
                 // scroll to the next item
-              } else {
-                navigation.replace("SignIn");
-              }
+
+                flatListRef?.current?.scrollToIndex({
+                  // index: index + 1,
+                  index: currentIndex + 1,
+                  animated: true,
+                });
+                // } else {
+                //   navigation.replace("SignIn");
+                // }
+              }}
+            />
+          </View>
+        )}
+        {currentIndex == constants.onboarding_screens.length - 1 && (
+          <View
+            style={{
+              paddingHorizontal: SIZES.padding,
+              marginVertical: SIZES.padding,
             }}
-          />
-        </View>
+          >
+            <TextButton
+              label="Let's Get Started"
+              buttonContainerStyle={{
+                paddingVertical: 12,
+                borderRadius: SIZES.radius,
+              }}
+              onPress={() => navigation.replace("SignIn")}
+            />
+          </View>
+        )}
       </View>
     );
   }
