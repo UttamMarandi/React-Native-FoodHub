@@ -9,7 +9,8 @@ import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import rootReducer from "./stores/rootReducer";
 
-import OnBoarding from "./screens/OnBoarding/OnBoarding";
+import OnBoarding from "./screens/Authentication/OnBoarding/OnBoarding";
+import SignIn from "./screens/Authentication/SignIn";
 
 import {
   FoodDetail,
@@ -37,8 +38,10 @@ const App = () => {
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{ headerShown: false }}
-          initialRouteName={"OnBoard"}
+          initialRouteName={"SignIn"}
         >
+          <Stack.Screen name="SignIn" component={SignIn} />
+
           <Stack.Screen name="OnBoard" component={OnBoarding} />
           <Stack.Screen name="Home" component={CustomDrawer} />
         </Stack.Navigator>

@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { View, Text, Image, ImageBackground, Animated } from "react-native";
-import { TextButton } from "../../components";
-import { constants, images, FONTS, SIZES, COLORS } from "../../constants";
+import { TextButton } from "../../../components";
+import { constants, images, FONTS, SIZES, COLORS } from "../../../constants";
 
 const OnBoarding = ({ navigation }) => {
   const scrollX = useRef(new Animated.Value(0)).current;
@@ -147,7 +147,7 @@ const OnBoarding = ({ navigation }) => {
                 paddingVertical: 12,
                 borderRadius: SIZES.radius,
               }}
-              onPress={() => navigation.replace("SignIn")}
+              onPress={() => navigation.replace("Home")}
             />
           </View>
         )}
