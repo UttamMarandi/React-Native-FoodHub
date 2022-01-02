@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import { AuthLayout } from ".";
-import { FormInput, CustomSwitch, TextButton } from "../../components";
+import {
+  FormInput,
+  CustomSwitch,
+  TextButton,
+  TextIconButton,
+  SocialSignComponent,
+} from "../../components";
 import { FONTS, COLORS, SIZES, icons } from "../../constants";
 import utils from "../../utils/Utils";
 
@@ -130,6 +136,40 @@ const SignIn = ({ navigation }) => {
             onPress={() => navigation.navigate("Sign Up")}
           />
         </View>
+      </View>
+      {/* Footer */}
+      <View>
+        {/* Facebook */}
+        <SocialSignComponent
+          containerStyle={{
+            height: 50,
+            alignItems: "center",
+            borderRadius: SIZES.radius,
+            backgroundColor: COLORS.blue,
+          }}
+          icon={icons.fb}
+          iconPosition="LEFT"
+          iconStyle={{ tintColor: COLORS.white }}
+          label="Continue with Facebook"
+          labelStyle={{ marginLeft: SIZES.radius, color: COLORS.white }}
+          onPress={() => console.log("FB")}
+        />
+
+        {/* GOogle */}
+        <SocialSignComponent
+          containerStyle={{
+            height: 50,
+            alignItems: "center",
+            borderRadius: SIZES.radius,
+            backgroundColor: COLORS.lightGray2,
+          }}
+          icon={icons.google}
+          iconPosition="LEFT"
+          iconStyle={{ tintColor: null }}
+          label="Continue with Google"
+          labelStyle={{ marginLeft: SIZES.radius }}
+          onPress={() => console.log("Google")}
+        />
       </View>
     </AuthLayout>
   );

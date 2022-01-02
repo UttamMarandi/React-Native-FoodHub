@@ -17,6 +17,7 @@ const SocialSignComponent = ({
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "center",
+        marginBottom: 10,
         ...containerStyle,
       }}
       onPress={onPress}
