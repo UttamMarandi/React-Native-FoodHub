@@ -10,6 +10,7 @@ const AuthLayout = ({ title, subtitle, titleContainerStyle, children }) => {
         flex: 1,
         paddingVertical: SIZES.padding,
         backgroundColor: COLORS.white,
+        paddingBottom: 100,
       }}
     >
       <KeyboardAwareScrollView
@@ -42,6 +43,7 @@ const AuthLayout = ({ title, subtitle, titleContainerStyle, children }) => {
 
         {/* Content / Children */}
         {children}
+        <View style={{ paddingVertical: 30 }} />
       </KeyboardAwareScrollView>
     </ScrollView>
   );
