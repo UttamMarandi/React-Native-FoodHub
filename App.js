@@ -23,6 +23,7 @@ import {
   Map,
 } from "./screens";
 import CustomDrawer from "./navigation/CustomDrawer";
+import SignUp from "./screens/Authentication/SignUp";
 
 const Stack = createStackNavigator();
 
@@ -38,8 +39,10 @@ const App = () => {
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{ headerShown: false }}
-          initialRouteName={"SignIn"}
+          initialRouteName={"SignUp"}
         >
+          <Stack.Screen name="SignUp" component={SignUp} />
+
           <Stack.Screen name="SignIn" component={SignIn} />
 
           <Stack.Screen name="OnBoard" component={OnBoarding} />

@@ -1,35 +1,46 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
+
 import { AuthLayout } from ".";
+
+import { FONTS, SIZES, COLORS, icons } from "../../constants";
 import {
   FormInput,
-  CustomSwitch,
   TextButton,
   TextIconButton,
   SocialSignComponent,
 } from "../../components";
-import { FONTS, COLORS, SIZES, icons } from "../../constants";
 import utils from "../../utils/Utils";
 
-const SignIn = ({ navigation }) => {
+const SignUp = ({ navigation }) => {
   const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [emailError, setEmailError] = useState("");
   const [showPass, setShowPass] = useState(false);
-  const [saveMe, setSaveMe] = useState(false);
 
-  function isEnableSignIn() {
-    return email != "" && password != "" && emailError == "";
-    //   this means email and password both are filled and Email Error is also empty
+  const [emailError, setEmailError] = useState("");
+  const [usernameError, setUsernameError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
+  function isEnableSignUp() {
+    return (
+      email != "" &&
+      username != "" &&
+      password != "" &&
+      emailError == "" &&
+      passwordError == "" &&
+      usernameError == ""
+    );
   }
 
   return (
     <AuthLayout
-      title="Let's Sign You in"
-      subtitle="Welcome back , you've been missed"
+      title="Getting Started"
+      subtitle="Create an account to continue"
+      titleContainerStyle={{ marginTop: SIZES.radius }}
     >
-      <View style={{ flex: 1, marginTop: SIZES.padding * 2 }}>
-        {/* Form Input */}
+      {/* Form input and signup section */}
+      <View style={{ flex: 1, marginTop: SIZES.padding }}>
         <FormInput
           label="Email"
           keyboardType="email-address"
@@ -64,11 +75,43 @@ const SignIn = ({ navigation }) => {
         />
 
         <FormInput
+          label="Username"
+          containerStyle={{ marginTop: SIZES.radius }}
+          onChange={(value) => setUsername(value)}
+          errorMsg={usernameError}
+          appendComponent={
+            <View style={{ justifyContent: "center" }}>
+              <Image
+                source={
+                  username == "" || (username != "" && usernameError == "")
+                    ? icons.correct
+                    : icons.cancel
+                }
+                style={{
+                  height: 20,
+                  width: 20,
+                  tintColor:
+                    username == ""
+                      ? COLORS.gray
+                      : username !== "" && usernameError == ""
+                      ? COLORS.green
+                      : COLORS.red,
+                }}
+              />
+            </View>
+          }
+        />
+        {/* Password */}
+        <FormInput
           label="Password"
           secureTextEntry={!showPass}
           autoCompleteType="password"
           containerStyle={{ marginTop: SIZES.radius }}
-          onChange={(value) => setPassword(value)}
+          onChange={(value) => {
+            utils.validatePassword(value, setPasswordError);
+            setPassword(value);
+          }}
+          errorMsg={passwordError}
           appendComponent={
             <TouchableOpacity
               style={{
@@ -85,40 +128,22 @@ const SignIn = ({ navigation }) => {
             </TouchableOpacity>
           }
         />
-
-        {/* Save me & Forgot */}
-        <View
-          style={{
-            flexDirection: "row",
-            marginTop: SIZES.radius,
-            justifyContent: "space-between",
-          }}
-        >
-          <CustomSwitch value={saveMe} onChange={(value) => setSaveMe(value)} />
-
-          <TextButton
-            label="Forgot Password"
-            buttonContainerStyle={{ backgroundColor: null }}
-            labelStyle={{ color: COLORS.gray, ...FONTS.body4 }}
-            onPress={() => navigation.navigate("ForgotPassword")}
-          />
-        </View>
-        {/* Sign In */}
+        {/*     Sign up */}
         <TextButton
-          label="Sign In"
-          disabled={isEnableSignIn() ? false : true}
+          label="SignUp"
+          disabled={isEnableSignUp() ? false : true}
           buttonContainerStyle={{
             height: 55,
             alignItems: "center",
             marginTop: SIZES.padding,
             borderRadius: SIZES.radius,
-            backgroundColor: isEnableSignIn()
+            backgroundColor: isEnableSignUp()
               ? COLORS.primary
               : COLORS.transparentPrimary,
           }}
+          onPress={() => navigation.navigate("Otp")}
         />
 
-        {/* Sign Up */}
         <View
           style={{
             flexDirection: "row",
@@ -127,16 +152,18 @@ const SignIn = ({ navigation }) => {
           }}
         >
           <Text style={{ color: COLORS.darkGray, ...FONTS.body3 }}>
-            Don't have an account?
+            Already have an account?
           </Text>
           <TextButton
             label=" Sign Up"
             buttonContainerStyle={{ backgroundColor: null }}
             labelStyle={{ color: COLORS.primary, ...FONTS.h3 }}
-            onPress={() => navigation.navigate("SignUp")}
+            onPress={() => navigation.navigate("SignIn")}
+            // onPress={() => navigation.goBack()} // goes back to previous screen
           />
         </View>
       </View>
+
       {/* Footer */}
       <View>
         {/* Facebook */}
@@ -175,4 +202,4 @@ const SignIn = ({ navigation }) => {
   );
 };
 
-export default SignIn;
+export default SignUp;
