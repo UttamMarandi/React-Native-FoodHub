@@ -7,6 +7,7 @@ import TextButton from "./TextButton";
 import TextIconButton from "./TextIconButton";
 import FormInput from "./FormInput";
 import CustomSwitch from "./CustomSwitch";
+import SocialSignComponent from "./SocialSignComponent";
 
 export {
   Header,
@@ -18,4 +19,5 @@ export {
   TextIconButton,
   FormInput,
   CustomSwitch,
+  SocialSignComponent,
 };
