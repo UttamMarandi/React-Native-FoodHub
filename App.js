@@ -25,6 +25,7 @@ import {
 import CustomDrawer from "./navigation/CustomDrawer";
 import SignUp from "./screens/Authentication/SignUp";
 import Otp from "./screens/Authentication/Otp";
+import ForgotPassword from "./screens/Authentication/ForgotPassword";
 
 const Stack = createStackNavigator();
 
@@ -40,8 +41,10 @@ const App = () => {
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{ headerShown: false }}
-          initialRouteName={"Otp"}
+          initialRouteName={"SignUp"}
         >
+          <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+
           <Stack.Screen name="Otp" component={Otp} />
 
           <Stack.Screen name="SignUp" component={SignUp} />
