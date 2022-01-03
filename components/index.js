@@ -8,6 +8,7 @@ import TextIconButton from "./TextIconButton";
 import FormInput from "./FormInput";
 import CustomSwitch from "./CustomSwitch";
 import SocialSignComponent from "./SocialSignComponent";
+import CartQuantityButton from "./CartQuantityButton";
 
 export {
   Header,
@@ -20,4 +21,5 @@ export {
   FormInput,
   CustomSwitch,
   SocialSignComponent,
+  CartQuantityButton,
 };

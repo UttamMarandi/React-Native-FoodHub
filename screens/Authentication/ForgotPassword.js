@@ -8,6 +8,12 @@ import utils from "../../utils/Utils";
 const ForgotPassword = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
+
+  function isEnableSignIn() {
+    return email != "" && emailError == "";
+    //   this means email and password both are filled and Email Error is also empty
+  }
+
   return (
     <AuthLayout
       title="Password Recovery"
@@ -47,6 +53,22 @@ const ForgotPassword = ({ navigation }) => {
               />
             </View>
           }
+        />
+
+        {/* Send buttons */}
+        <TextButton
+          label="Send mail"
+          disabled={isEnableSignIn() ? false : true}
+          buttonContainerStyle={{
+            height: 55,
+            alignItems: "center",
+            marginTop: SIZES.padding,
+            borderRadius: SIZES.radius,
+            backgroundColor: isEnableSignIn()
+              ? COLORS.primary
+              : COLORS.transparentPrimary,
+          }}
+          onPress={() => navigation.goback()}
         />
       </View>
     </AuthLayout>
