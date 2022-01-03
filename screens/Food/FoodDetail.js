@@ -7,6 +7,7 @@ import {
   IconLabel,
   LineDivider,
   Rating,
+  StepperInput,
   TextButton,
 } from "../../components";
 import {
@@ -23,6 +24,7 @@ const FoodDetail = () => {
   // in next phases we will get the data from route params
 
   const [selectedSize, setSelectedSize] = useState("");
+  const [quantity, setQuantity] = useState(0);
 
   function renderHeader() {
     return (
@@ -254,6 +256,32 @@ const FoodDetail = () => {
       </View>
     );
   }
+
+  function renderFooter() {
+    return (
+      <View
+        style={{
+          flexDirection: "row",
+          height: 120,
+          alignItems: "center",
+          paddingHorizontal: SIZES.padding,
+          paddingBottom: SIZES.radius,
+        }}
+      >
+        {/* Stepper Input */}
+        <StepperInput
+          value={quantity}
+          onAdd={() => setQuantity(quantity + 1)}
+          onMinus={() => {
+            if (quantity > 1) {
+              setQuantity(quantity - 1);
+            }
+          }}
+        />
+      </View>
+    );
+  }
+
   return (
     <View
       style={{
@@ -273,6 +301,9 @@ const FoodDetail = () => {
 
         {renderRestaurent()}
       </ScrollView>
+      {/* Footer */}
+      <LineDivider />
+      {renderFooter()}
     </View>
   );
 };

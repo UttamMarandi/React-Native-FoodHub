@@ -12,6 +12,7 @@ import CartQuantityButton from "./CartQuantityButton";
 import IconLabel from "./IconLabel";
 import LineDivider from "./LineDivider";
 import Rating from "./Rating";
+import StepperInput from "./StepperInput";
 
 export {
   Header,
@@ -28,4 +29,5 @@ export {
   IconLabel,
   LineDivider,
   Rating,
+  StepperInput,
 };
