@@ -10,6 +10,8 @@ import CustomSwitch from "./CustomSwitch";
 import SocialSignComponent from "./SocialSignComponent";
 import CartQuantityButton from "./CartQuantityButton";
 import IconLabel from "./IconLabel";
+import LineDivider from "./LineDivider";
+import Rating from "./Rating";
 
 export {
   Header,
@@ -24,4 +26,6 @@ export {
   SocialSignComponent,
   CartQuantityButton,
   IconLabel,
+  LineDivider,
+  Rating,
 };

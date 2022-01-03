@@ -1,11 +1,28 @@
 import React, { useState } from "react";
 import { View, Text, ScrollView, Image } from "react-native";
-import { CartQuantityButton, Header, IconButton } from "../../components";
-import { SIZES, COLORS, FONTS, icons, dummyData } from "../../constants";
+import {
+  CartQuantityButton,
+  Header,
+  IconButton,
+  IconLabel,
+  LineDivider,
+  Rating,
+  TextButton,
+} from "../../components";
+import {
+  SIZES,
+  COLORS,
+  FONTS,
+  icons,
+  dummyData,
+  images,
+} from "../../constants";
 
 const FoodDetail = () => {
   const [foodItem, setFoodItem] = useState(dummyData.vegBiryani);
   // in next phases we will get the data from route params
+
+  const [selectedSize, setSelectedSize] = useState("");
 
   function renderHeader() {
     return (
@@ -120,7 +137,120 @@ const FoodDetail = () => {
           >
             {foodItem?.description}
           </Text>
+
+          {/* Ratings, duration and Shipping */}
+
+          <View style={{ flexDirection: "row", marginTop: SIZES.padding }}>
+            {/* Ratings */}
+            <IconLabel
+              containerStyle={{ backgroundColor: COLORS.primary }}
+              icon={icons.star}
+              label="4.5"
+              labelStyle={{ color: COLORS.white }}
+            />
+
+            {/* Duration */}
+            <IconLabel
+              containerStyle={{
+                marginLeft: SIZES.radius,
+                paddingHorizontal: 0,
+              }}
+              icon={icons.clock}
+              label="30 mins"
+              iconStyle={{ tintColor: COLORS.black }}
+            />
+
+            {/* Shipping */}
+            <IconLabel
+              containerStyle={{
+                marginLeft: SIZES.radius,
+                paddingHorizontal: 0,
+              }}
+              icon={icons.dollar}
+              label="Free Shipping"
+              iconStyle={{ tintColor: COLORS.black }}
+            />
+          </View>
         </View>
+
+        {/* Sizes */}
+        <View
+          style={{
+            flexDirection: "row",
+            marginTop: SIZES.padding,
+            alignItems: "center",
+          }}
+        >
+          <Text style={{ ...FONTS.h3 }}>Sizes:</Text>
+
+          {/* Size buttons */}
+          <View
+            style={{
+              flexDirection: "row",
+              flexWrap: "wrap",
+              marginLeft: SIZES.padding,
+            }}
+          >
+            {dummyData.sizes.map((item, index) => {
+              return (
+                <TextButton
+                  key={`Sizes-${index}`}
+                  buttonContainerStyle={{
+                    width: 55,
+                    height: 55,
+                    margin: SIZES.base,
+                    borderWidth: 1,
+                    borderRadius: SIZES.radius,
+                    borderColor:
+                      selectedSize == item.id ? COLORS.primary : COLORS.gray2,
+                    backgroundColor:
+                      selectedSize == item.id ? COLORS.primary : null,
+                  }}
+                  label={item.label}
+                  labelStyle={{
+                    color:
+                      selectedSize == item.id ? COLORS.white : COLORS.gray2,
+                    ...FONTS.body2,
+                  }}
+                  onPress={() => setSelectedSize(item.id)}
+                />
+              );
+            })}
+          </View>
+        </View>
+      </View>
+    );
+  }
+
+  function renderRestaurent() {
+    return (
+      <View
+        style={{
+          flexDirection: "row",
+          marginVertical: SIZES.padding,
+          paddingHorizontal: SIZES.padding,
+          alignItems: "center",
+        }}
+      >
+        <Image
+          source={images.profile}
+          style={{ width: 50, height: 50, borderRadius: SIZES.radius }}
+        />
+        {/* Info */}
+        <View
+          style={{
+            flex: 1,
+            marginLeft: SIZES.radius,
+            justifyContent: "center",
+          }}
+        >
+          <Text style={{ ...FONTS.h3 }}>Balaji Hotel</Text>
+          <Text style={{ color: COLORS.gray, ...FONTS.body4 }}>
+            1.2 KM away from you
+          </Text>
+        </View>
+        {/* Ratings */}
+        <Rating rating={4} iconStyle={{ marginLeft: 3 }} />
       </View>
     );
   }
@@ -138,7 +268,10 @@ const FoodDetail = () => {
       <ScrollView>
         {/* FOod detail */}
         {renderDetails()}
+        <LineDivider />
         {/* Restaurent */}
+
+        {renderRestaurent()}
       </ScrollView>
     </View>
   );
