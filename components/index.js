@@ -9,6 +9,7 @@ import FormInput from "./FormInput";
 import CustomSwitch from "./CustomSwitch";
 import SocialSignComponent from "./SocialSignComponent";
 import CartQuantityButton from "./CartQuantityButton";
+import IconLabel from "./IconLabel";
 
 export {
   Header,
@@ -22,4 +23,5 @@ export {
   CustomSwitch,
   SocialSignComponent,
   CartQuantityButton,
+  IconLabel,
 };
