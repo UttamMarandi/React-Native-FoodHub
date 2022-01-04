@@ -19,7 +19,7 @@ import {
   images,
 } from "../../constants";
 
-const FoodDetail = () => {
+const FoodDetail = ({ navigation }) => {
   const [foodItem, setFoodItem] = useState(dummyData.vegBiryani);
   // in next phases we will get the data from route params
 
@@ -293,6 +293,7 @@ const FoodDetail = () => {
           label="Buy Now"
           label2="$ 15.99"
           // label2 is text align right
+          onPress={() => navigation.navigate("MyCart")}
         />
       </View>
     );

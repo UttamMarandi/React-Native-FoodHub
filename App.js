@@ -41,8 +41,10 @@ const App = () => {
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{ headerShown: false }}
-          initialRouteName={"FoodDetail"}
+          initialRouteName={"MyCart"}
         >
+          <Stack.Screen name="MyCart" component={MyCart} />
+
           <Stack.Screen name="FoodDetail" component={FoodDetail} />
 
           <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
