@@ -278,6 +278,22 @@ const FoodDetail = () => {
             }
           }}
         />
+
+        {/* Text Button */}
+        <TextButton
+          buttonContainerStyle={{
+            flex: 1,
+            flexDirection: "row",
+            height: 60,
+            marginLeft: SIZES.radius,
+            paddingHorizontal: SIZES.radius,
+            borderRadius: SIZES.radius,
+            backgroundColor: COLORS.primary,
+          }}
+          label="Buy Now"
+          label2="$ 15.99"
+          // label2 is text align right
+        />
       </View>
     );
   }
