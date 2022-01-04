@@ -41,9 +41,11 @@ const App = () => {
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{ headerShown: false }}
-          initialRouteName={"MyCart"}
+          initialRouteName={"MyCard"}
         >
           <Stack.Screen name="MyCart" component={MyCart} />
+
+          <Stack.Screen name="MyCard" component={MyCard} />
 
           <Stack.Screen name="FoodDetail" component={FoodDetail} />
 
