@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, Image, ImageBackground } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { FormInput, Header, IconButton, TextButton } from "../../components";
+import {
+  FormInput,
+  FormInputCheck,
+  Header,
+  IconButton,
+  RadioButton,
+  TextButton,
+} from "../../components";
 import { FONTS, SIZES, COLORS, icons, images } from "../../constants";
 import utils from "../../utils/Utils";
 
@@ -9,7 +16,8 @@ const AddCard = ({ navigation, route }) => {
   const [selectedCard, setSelectedCard] = useState(null);
   const [cardNumber, setCardNumber] = useState("");
   const [cardNumberError, setCardNumberError] = useState("");
-  const [cardName, setCardNameError] = useState("");
+  const [cardName, setCardName] = useState("");
+  const [cardNameError, setCardNameError] = useState("");
   const [expiryDate, setExpiryDate] = useState("");
   const [expiryDateError, setExpiryDateError] = useState("");
   const [cvv, setCvv] = useState("");
@@ -136,7 +144,78 @@ const AddCard = ({ navigation, route }) => {
             // this replace and trim along with regular expression gives says that find any spaces in value , then divide the into 4 digits , followed by a space , "$1 ", and then trim the value
           }}
           errorMsg={cardNumberError}
+          appendComponent={
+            <FormInputCheck value={cardNumber} error={cardNumberError} />
+          }
         />
+
+        {/* Card Holder Name */}
+        <FormInput
+          label="Cardholder Name"
+          value={cardName}
+          containerStyle={{
+            marginTop: SIZES.radius,
+          }}
+          onChange={(value) => {
+            setCardName(value);
+            utils.validateInput(value, 1, setCardNameError);
+          }}
+          errorMsg={cardNameError}
+          appendComponent={
+            <FormInputCheck value={cardNumber} error={cardNumberError} />
+          }
+        />
+
+        {/*Expiry Date, CVV  */}
+        <View style={{ flexDirection: "row", marginTop: SIZES.radius }}>
+          <FormInput
+            label="Expiry Date"
+            value={expiryDate}
+            placeholder="MM/YY"
+            maxLength={5}
+            containerStyle={{
+              flex: 1,
+            }}
+            onChange={(value) => {
+              setExpiryDate(value);
+              utils.validateInput(value, 5, setExpiryDateError);
+            }}
+            errorMsg={setExpiryDateError}
+            appendComponent={
+              <FormInputCheck value={expiryDate} error={expiryDateError} />
+            }
+          />
+
+          {/* CVV */}
+          <FormInput
+            label="CVV"
+            value={cvv}
+            maxLength={3}
+            containerStyle={{
+              flex: 1,
+              marginLeft: SIZES.radius,
+            }}
+            onChange={(value) => {
+              setCvv(value);
+              utils.validateInput(value, 3, setCvvError);
+            }}
+            errorMsg={setCvv}
+            appendComponent={<FormInputCheck value={cvv} error={setCvvError} />}
+          />
+        </View>
+        {/* Remember */}
+        <View
+          style={{
+            alignItems: "flex-start",
+            marginTop: SIZES.padding,
+          }}
+        >
+          <RadioButton
+            label="Remember the card details"
+            isSelected={isRemember}
+            onPress={() => setIsRemember(!isRemember)}
+          />
+        </View>
       </View>
     );
   }
