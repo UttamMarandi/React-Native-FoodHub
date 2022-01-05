@@ -47,7 +47,7 @@ const FormInput = ({
           // onChange={(text) => onChange(text)}
           autoCompleteType={autoCompleteType}
           maxLength={maxLength}
-          onChangeText={onChange}
+          onChangeText={(text) => onChange(text)}
         />
         {appendComponent}
       </View>

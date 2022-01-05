@@ -122,8 +122,9 @@ const AddCard = ({ navigation, route }) => {
         {/* Card Number */}
         <FormInput
           label="Card Number"
-          //   keyboardType="number-pad"
+          keyboardType="number-pad"
           value={cardNumber}
+          maxLength={16}
           onChange={(value) => {
             setCardNumber(
               value
@@ -131,8 +132,10 @@ const AddCard = ({ navigation, route }) => {
                 .replace(/(\d{4})/g, "$1 ")
                 .trim()
             );
+            utils.validateInput(value, 16, setCardNumberError);
             // this replace and trim along with regular expression gives says that find any spaces in value , then divide the into 4 digits , followed by a space , "$1 ", and then trim the value
           }}
+          errorMsg={cardNumberError}
         />
       </View>
     );
@@ -169,3 +172,7 @@ const AddCard = ({ navigation, route }) => {
 };
 
 export default AddCard;
+
+// Bug
+//Regex expression not provinding spaces in input field. Although it is working propery when displayed using variable.
+// The cardNumber value gets updated with regex expression and has spaces after every 4 number but there is no space after 4 numbers in input field
