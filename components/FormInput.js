@@ -3,6 +3,7 @@ import { View, Text, TextInput } from "react-native";
 import { FONTS, SIZES, COLORS } from "../constants";
 const FormInput = ({
   containerStyle,
+  inputContainerStyle,
   label,
   placeholder,
   inputStyle,
@@ -14,6 +15,7 @@ const FormInput = ({
   autoCompleteType = "off",
   autoCapitalize = "none",
   errorMsg = "",
+  maxLength,
 }) => {
   return (
     <View style={{ ...containerStyle }}>
@@ -31,6 +33,7 @@ const FormInput = ({
           paddingHorizontal: SIZES.padding,
           borderRadius: SIZES.radius,
           backgroundColor: COLORS.lightGray2,
+          ...inputContainerStyle,
         }}
       >
         {prependComponent}
@@ -41,8 +44,10 @@ const FormInput = ({
           secureTextEntry={secureTextEntry}
           keyboardType={keyboardType}
           autoCapitalize={autoCapitalize}
-          onChange={(text) => onChange(text)}
+          // onChange={(text) => onChange(text)}
           autoCompleteType={autoCompleteType}
+          maxLength={maxLength}
+          onChangeText={onChange}
         />
         {appendComponent}
       </View>
@@ -51,3 +56,6 @@ const FormInput = ({
 };
 
 export default FormInput;
+
+// Bug fix
+//Onchange for text input not working
