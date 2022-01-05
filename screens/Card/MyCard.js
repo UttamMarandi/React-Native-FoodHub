@@ -50,13 +50,66 @@ const MyCard = ({ navigation }) => {
         {dummyData.myCards.map((item, index) => {
           return (
             <CardItem
-              key={`myCard-${index}`}
+              key={`MyCard-${item.id}`}
               item={item}
-              onPress={() => selectedCard({ ...item, key: "MyCard" })}
+              isSelected={
+                `${selectedCard?.key}-${selectedCard?.id}` ==
+                `MyCard-${item.id}`
+              }
+              onPress={() => setSelectedCard({ ...item, key: "MyCard" })}
               //   passing the key helps identify which section prop is clicked
             />
           );
         })}
+      </View>
+    );
+  }
+
+  function renderAddNewCard() {
+    return (
+      <View
+        style={{
+          marginTop: SIZES.padding,
+        }}
+      >
+        <Text style={{ ...FONTS.h3 }}>Add new card</Text>
+
+        {dummyData.allCards.map((item, index) => {
+          return (
+            <CardItem
+              key={`NewCard-${item.id}`}
+              item={item}
+              isSelected={
+                `${selectedCard?.key}-${selectedCard?.id}` ==
+                `NewCard-${item.id}`
+              }
+              onPress={() => setSelectedCard({ ...item, key: "NewCard" })}
+            />
+          );
+        })}
+      </View>
+    );
+  }
+
+  function renderFooter() {
+    return (
+      <View
+        style={{
+          paddingTop: SIZES.radius,
+          paddingBottom: SIZES.padding,
+          paddingHorizontal: SIZES.padding,
+        }}
+      >
+        <TextButton
+          disabled={selectedCard == null}
+          buttonContainerStyle={{
+            height: 60,
+            borderRadius: SIZES.radius,
+            backgroundColor:
+              selectedCard == null ? COLORS.gray : COLORS.primary,
+          }}
+          label={selectedCard?.key == "NewCard" ? "Add" : "Place your order"}
+        />
       </View>
     );
   }
@@ -82,9 +135,15 @@ const MyCard = ({ navigation }) => {
       >
         {/* My cards */}
         {renderMyCards()}
+
+        {/* Add new card */}
+        {renderAddNewCard()}
+
+        {/* Footer */}
       </ScrollView>
 
       {/* Footer */}
+      {renderFooter()}
     </View>
   );
 };
