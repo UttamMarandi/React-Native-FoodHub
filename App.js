@@ -45,6 +45,8 @@ const App = () => {
         >
           <Stack.Screen name="MyCart" component={MyCart} />
 
+          <Stack.Screen name="AddCard" component={AddCard} />
+
           <Stack.Screen name="MyCard" component={MyCard} />
 
           <Stack.Screen name="FoodDetail" component={FoodDetail} />
