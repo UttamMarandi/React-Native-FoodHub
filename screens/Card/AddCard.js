@@ -30,6 +30,18 @@ const AddCard = ({ navigation, route }) => {
     setSelectedCard(selectedCard);
   }, []);
 
+  function isEnableCard() {
+    return (
+      cardName != "" &&
+      cardNumber != "" &&
+      expiryDate != "" &&
+      cvv != "" &&
+      cardNameError == "" &&
+      cardNumberError == "" &&
+      cvvError == ""
+    );
+  }
+
   function renderCard() {
     return (
       <ImageBackground
@@ -186,11 +198,11 @@ const AddCard = ({ navigation, route }) => {
             }
           />
 
-          {/* CVV */}
           <FormInput
-            label="CVV"
+            label="Cvv"
             value={cvv}
-            maxLength={3}
+            // placeholder="MM/YY"
+            maxLength={5}
             containerStyle={{
               flex: 1,
               marginLeft: SIZES.radius,
@@ -199,8 +211,8 @@ const AddCard = ({ navigation, route }) => {
               setCvv(value);
               utils.validateInput(value, 3, setCvvError);
             }}
-            errorMsg={setCvv}
-            appendComponent={<FormInputCheck value={cvv} error={setCvvError} />}
+            errorMsg={cvvError}
+            appendComponent={<FormInputCheck value={cvv} error={cvvError} />}
           />
         </View>
         {/* Remember */}
@@ -216,6 +228,29 @@ const AddCard = ({ navigation, route }) => {
             onPress={() => setIsRemember(!isRemember)}
           />
         </View>
+      </View>
+    );
+  }
+
+  function renderFooter() {
+    return (
+      <View
+        style={{
+          paddingTop: SIZES.radius,
+          paddingBottom: SIZES.padding,
+          paddingHorizontal: SIZES.padding,
+        }}
+      >
+        <TextButton
+          label="Add Card"
+          buttonContainerStyle={{
+            height: 60,
+            borderRadius: SIZES.radius,
+            backgroundColor: isEnableCard() ? COLORS.primary : COLORS.gray,
+          }}
+          onPress={() => navigation.goBack()}
+          disabled={!isEnableCard()}
+        />
       </View>
     );
   }
@@ -246,6 +281,7 @@ const AddCard = ({ navigation, route }) => {
       </KeyboardAwareScrollView>
 
       {/* Footer */}
+      {renderFooter()}
     </View>
   );
 };

@@ -45,6 +45,18 @@ const App = () => {
         >
           <Stack.Screen name="MyCart" component={MyCart} />
 
+          <Stack.Screen name="DeliveryStatus" component={DeliveryStatus} />
+
+          <Stack.Screen
+            name="Success"
+            component={Success}
+            options={{ gestureEnabled: false }}
+            // gesture enabled works for ios only. if gesture enabled is false , then we can't traverse between screen using gestures.
+            //works for ios only , for android we require Backhandler module
+          />
+
+          <Stack.Screen name="Checkout" component={Checkout} />
+
           <Stack.Screen name="AddCard" component={AddCard} />
 
           <Stack.Screen name="MyCard" component={MyCard} />
