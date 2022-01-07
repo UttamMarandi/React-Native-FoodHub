@@ -43,7 +43,6 @@ const Section = ({ title, onPress, children }) => {
 };
 
 const Home = ({ navigation }) => {
-  console.log("navigation", navigation);
   const [selectedCategoryId, setSelectedCategoryId] = useState(1);
   const [selectedMenuType, setSelectedMenuType] = useState(1);
   const [recommends, setRecommends] = useState([]);

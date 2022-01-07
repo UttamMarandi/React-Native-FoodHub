@@ -28,6 +28,7 @@ import CustomDrawer from "./navigation/CustomDrawer";
 import SignUp from "./screens/Authentication/SignUp";
 import Otp from "./screens/Authentication/Otp";
 import ForgotPassword from "./screens/Authentication/ForgotPassword";
+import MainLayout from "./screens/MainLayout";
 
 const Stack = createStackNavigator();
 
@@ -46,6 +47,8 @@ const App = () => {
           initialRouteName={"Home"}
         >
           <Stack.Screen name="Home" component={CustomDrawer} />
+
+          <Stack.Screen name="CustomDrawer" component={CustomDrawer} />
 
           <Stack.Screen name="FoodDetail" component={FoodDetail} />
 
