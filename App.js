@@ -22,6 +22,8 @@ import {
   DeliveryStatus,
   Map,
 } from "./screens";
+import Home from "./screens/Home/Home";
+
 import CustomDrawer from "./navigation/CustomDrawer";
 import SignUp from "./screens/Authentication/SignUp";
 import Otp from "./screens/Authentication/Otp";
@@ -41,8 +43,12 @@ const App = () => {
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{ headerShown: false }}
-          initialRouteName={"Map"}
+          initialRouteName={"Home"}
         >
+          <Stack.Screen name="Home" component={CustomDrawer} />
+
+          <Stack.Screen name="FoodDetail" component={FoodDetail} />
+
           <Stack.Screen name="MyCart" component={MyCart} />
 
           <Stack.Screen name="Map" component={Map} />
@@ -63,8 +69,6 @@ const App = () => {
 
           <Stack.Screen name="MyCard" component={MyCard} />
 
-          <Stack.Screen name="FoodDetail" component={FoodDetail} />
-
           <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
 
           <Stack.Screen name="Otp" component={Otp} />
@@ -74,7 +78,6 @@ const App = () => {
           <Stack.Screen name="SignIn" component={SignIn} />
 
           <Stack.Screen name="OnBoard" component={OnBoarding} />
-          <Stack.Screen name="Home" component={CustomDrawer} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

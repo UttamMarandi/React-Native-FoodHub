@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 import {
   View,
   Text,
@@ -41,7 +42,8 @@ const Section = ({ title, onPress, children }) => {
   );
 };
 
-const Home = () => {
+const Home = ({ navigation }) => {
+  console.log("navigation", navigation);
   const [selectedCategoryId, setSelectedCategoryId] = useState(1);
   const [selectedMenuType, setSelectedMenuType] = useState(1);
   const [recommends, setRecommends] = useState([]);
@@ -190,7 +192,7 @@ const Home = () => {
                 width: 150,
               }}
               item={item}
-              onPress={() => console.log("Horizental food card")}
+              onPress={() => navigation.navigate("FoodDetail")}
             />
           )}
         />
@@ -216,7 +218,7 @@ const Home = () => {
                 marginRight: index.length - 1 ? SIZES.padding : 0,
               }}
               item={item}
-              onPress={() => console.log("vertical food card")}
+              onPress={() => navigation.navigate("FoodDetail")}
             />
           )}
         />

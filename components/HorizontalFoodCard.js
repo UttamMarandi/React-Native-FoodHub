@@ -13,6 +13,7 @@ function HorizontalFoodCard({ containerStyle, imageStyle, item, onPress }) {
         backgroundColor: COLORS.lightGray2,
         ...containerStyle,
       }}
+      onPress={onPress}
     >
       {/* Image */}
       <Image source={item.image} style={imageStyle} />

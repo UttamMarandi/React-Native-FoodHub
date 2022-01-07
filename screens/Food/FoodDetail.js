@@ -52,7 +52,7 @@ const FoodDetail = ({ navigation }) => {
               height: 20,
               tintColor: COLORS.gray2,
             }}
-            onPress={() => console.log("Back")}
+            onPress={() => navigation.goBack()}
           />
         }
         rightComponent={<CartQuantityButton quantity={3} />}

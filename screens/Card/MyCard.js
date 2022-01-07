@@ -5,6 +5,7 @@ import { Header, IconButton, TextButton, CardItem } from "../../components";
 import { FONTS, SIZES, COLORS, icons, dummyData } from "../../constants";
 
 const MyCard = ({ navigation }) => {
+  console.log("navigation", navigation);
   // states
   const [selectedCard, setSelectedCard] = useState(null);
 
