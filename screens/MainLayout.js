@@ -314,12 +314,20 @@ const MainLayout = ({ navigation, selectedTab, setSelectedTab }) => {
           renderItem={({ item, index }) => {
             return (
               <View style={{ height: SIZES.height, width: SIZES.width }}>
-                {item.label == constants.screens.home && <Home />}
-                {item.label == constants.screens.search && <Search />}
-                {item.label == constants.screens.cart && <Cart />}
-                {item.label == constants.screens.favourite && <Favourite />}
+                {item.label == constants.screens.home && (
+                  <Home navigation={navigation} />
+                )}
+                {item.label == constants.screens.search && (
+                  <Search navigation={navigation} />
+                )}
+                {item.label == constants.screens.cart && (
+                  <Cart navigation={navigation} />
+                )}
+                {item.label == constants.screens.favourite && (
+                  <Favourite navigation={navigation} />
+                )}
                 {item.label == constants.screens.notification && (
-                  <Notification />
+                  <Notification navigation={navigation} />
                 )}
               </View>
             );
