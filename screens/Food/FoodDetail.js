@@ -19,7 +19,9 @@ import {
   images,
 } from "../../constants";
 
-const FoodDetail = ({ navigation }) => {
+const FoodDetail = ({ navigation, route }) => {
+  // const { item } = route.params;
+  console.log("route params", route.params);
   const [foodItem, setFoodItem] = useState(dummyData.vegBiryani);
   // in next phases we will get the data from route params
 

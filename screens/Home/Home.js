@@ -43,7 +43,6 @@ const Section = ({ title, onPress, children }) => {
 };
 
 const Home = ({ navigation }) => {
-  console.log("navigation", navigation);
   const [selectedCategoryId, setSelectedCategoryId] = useState(1);
   const [selectedMenuType, setSelectedMenuType] = useState(1);
   const [recommends, setRecommends] = useState([]);
@@ -192,7 +191,7 @@ const Home = ({ navigation }) => {
                 width: 150,
               }}
               item={item}
-              onPress={() => navigation.navigate("FoodDetail")}
+              onPress={() => navigation.navigate("FoodDetail", { item })}
             />
           )}
         />
@@ -218,7 +217,7 @@ const Home = ({ navigation }) => {
                 marginRight: index.length - 1 ? SIZES.padding : 0,
               }}
               item={item}
-              onPress={() => navigation.navigate("FoodDetail")}
+              onPress={() => navigation.navigate("FoodDetail", { item })}
             />
           )}
         />
@@ -356,7 +355,7 @@ const Home = ({ navigation }) => {
                 width: 110,
               }}
               item={item}
-              onPress={() => console.log("Horizental Food Card")}
+              onPress={() => navigation.navigate("FoodDetail", { item })}
             />
           );
         }}
