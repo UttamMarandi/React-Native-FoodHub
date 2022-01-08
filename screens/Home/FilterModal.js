@@ -20,7 +20,7 @@ const Section = ({ containerStyle, title, children }) => {
   );
 };
 
-const FilterModal = ({ isVisible, onClose }) => {
+const FilterModal = ({ isVisible, onClose, navigation }) => {
   const [deliveryTime, setDeliveryTime] = useState("");
   const [ratings, setRatings] = useState("");
   const [tags, setTags] = useState("");
@@ -282,7 +282,7 @@ const FilterModal = ({ isVisible, onClose }) => {
                 borderRadius: SIZES.base,
                 backgroundColor: COLORS.primary,
               }}
-              onPress={() => console.log("Apply Filters")}
+              onPress={() => navigation.navigate("Search")}
             />
           </View>
         </Animated.View>

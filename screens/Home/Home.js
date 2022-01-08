@@ -313,6 +313,7 @@ const Home = ({ navigation }) => {
         <FilterModal
           isVisible={showFilterModal}
           onClose={() => setShowFilterModal(false)}
+          navigation={navigation}
         />
       )}
 

@@ -20,9 +20,9 @@ import {
 } from "../../constants";
 
 const FoodDetail = ({ navigation, route }) => {
-  // const { item } = route.params;
-  console.log("route params", route.params);
-  const [foodItem, setFoodItem] = useState(dummyData.vegBiryani);
+  const { item } = route.params;
+  const [foodItem, setFoodItem] = useState(item);
+  console.log(foodItem);
   // in next phases we will get the data from route params
 
   const [selectedSize, setSelectedSize] = useState("");

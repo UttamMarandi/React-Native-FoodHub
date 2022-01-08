@@ -29,6 +29,7 @@ import SignUp from "./screens/Authentication/SignUp";
 import Otp from "./screens/Authentication/Otp";
 import ForgotPassword from "./screens/Authentication/ForgotPassword";
 import MainLayout from "./screens/MainLayout";
+import Search from "./screens/Search/Search";
 
 const Stack = createStackNavigator();
 
@@ -51,6 +52,8 @@ const App = () => {
           <Stack.Screen name="CustomDrawer" component={CustomDrawer} />
 
           <Stack.Screen name="FoodDetail" component={FoodDetail} />
+
+          <Stack.Screen name="Search" component={Search} />
 
           <Stack.Screen name="MyCart" component={MyCart} />
 
