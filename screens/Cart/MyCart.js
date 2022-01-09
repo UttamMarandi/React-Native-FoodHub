@@ -17,6 +17,12 @@ const MyCart = ({ navigation }) => {
   const [subTotalSum, setTotalCartSum] = useState(0);
   const [shippingFee, setShippingFee] = useState(2.45);
 
+  const dataSend = {
+    subtotal: subTotalSum,
+    shippingFee: shippingFee,
+    total: subTotalSum + shippingFee,
+  };
+
   useEffect(() => {
     // this will update the total values on first run , need to run only once
 
@@ -211,7 +217,7 @@ const MyCart = ({ navigation }) => {
         subtotal={subTotalSum}
         shippingFee={shippingFee}
         total={subTotalSum + shippingFee}
-        onPress={() => navigation.navigate("MyCard")}
+        onPress={() => navigation.navigate("MyCard", { dataSend })}
       />
     </View>
   );

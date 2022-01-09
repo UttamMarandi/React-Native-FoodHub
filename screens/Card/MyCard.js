@@ -4,9 +4,12 @@ import { Header, IconButton, TextButton, CardItem } from "../../components";
 
 import { FONTS, SIZES, COLORS, icons, dummyData } from "../../constants";
 
-const MyCard = ({ navigation }) => {
+const MyCard = ({ navigation, route }) => {
+  const { dataSend } = route.params;
+  console.log("dataSend", dataSend);
   // states
   const [selectedCard, setSelectedCard] = useState(null);
+  const [orderPlacedAmt, setOrderPlacesAmt] = useState(dataSend);
 
   // render
   function renderHeader() {
@@ -117,6 +120,7 @@ const MyCard = ({ navigation }) => {
             } else {
               navigation.navigate("Checkout", {
                 selectedCard: selectedCard,
+                dataSend: orderPlacedAmt,
               });
             }
           }}

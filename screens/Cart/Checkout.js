@@ -15,6 +15,7 @@ import { COLORS, FONTS, SIZES, icons, dummyData } from "../../constants";
 
 const Checkout = ({ navigation, route }) => {
   const [selectedCard, setSelectedCard] = useState(null);
+  let { dataSend } = route.params;
 
   useEffect(() => {
     let { selectedCard } = route.params;
@@ -195,9 +196,9 @@ const Checkout = ({ navigation, route }) => {
       </KeyboardAwareScrollView>
 
       <FooterTotal
-        subtotal={37.97}
-        shippingFee={0.0}
-        total={37.97}
+        subtotal={dataSend.subtotal}
+        shippingFee={dataSend.shippingFee}
+        total={dataSend.total}
         onPress={() => navigation.replace("Success")}
       />
     </View>
@@ -205,3 +206,6 @@ const Checkout = ({ navigation, route }) => {
 };
 
 export default Checkout;
+
+//  Prop drilling issue
+//Refactor : May use redux to get the total values
