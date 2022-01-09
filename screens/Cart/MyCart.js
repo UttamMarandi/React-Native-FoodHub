@@ -15,6 +15,9 @@ import { COLORS, FONTS, SIZES, dummyData, icons } from "../../constants";
 const MyCart = ({ navigation }) => {
   const [myCartList, setMyCartList] = useState(dummyData.myCart);
 
+  let totalPrice;
+  console.log("myCartList", myCartList);
+
   // Handler
   function updateQuantityHandler(newQty, id) {
     const newMyCartList = myCartList.map((item) =>
@@ -118,7 +121,7 @@ const MyCart = ({ navigation }) => {
               >
                 <Text style={{ ...FONTS.body3 }}>{data.item.name}</Text>
                 <Text style={{ color: COLORS.primary, ...FONTS.h3 }}>
-                  $ {data.item.price}
+                  $ {data.item.price * data.item.qty}
                 </Text>
               </View>
 

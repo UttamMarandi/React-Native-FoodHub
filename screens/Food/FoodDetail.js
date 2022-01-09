@@ -22,11 +22,11 @@ import {
 const FoodDetail = ({ navigation, route }) => {
   const { item } = route.params;
   const [foodItem, setFoodItem] = useState(item);
-  console.log(foodItem);
+
   // in next phases we will get the data from route params
 
   const [selectedSize, setSelectedSize] = useState("");
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
 
   function renderHeader() {
     return (
@@ -293,7 +293,7 @@ const FoodDetail = ({ navigation, route }) => {
             backgroundColor: COLORS.primary,
           }}
           label="Buy Now"
-          label2="$ 15.99"
+          label2={`$ ${foodItem?.price * quantity}`}
           // label2 is text align right
           onPress={() => navigation.navigate("MyCart")}
         />

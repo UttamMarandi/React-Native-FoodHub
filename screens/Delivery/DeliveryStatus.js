@@ -10,7 +10,7 @@ import {
 import { FONTS, COLORS, SIZES, icons, constants } from "../../constants";
 
 const DeliveryStatus = ({ navigation }) => {
-  const [currentStep, setCurrentStep] = useState(5);
+  const [currentStep, setCurrentStep] = useState(2);
 
   function renderHeader() {
     return (
