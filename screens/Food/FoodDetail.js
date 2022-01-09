@@ -295,7 +295,7 @@ const FoodDetail = ({ navigation, route }) => {
           label="Buy Now"
           label2={`$ ${foodItem?.price * quantity}`}
           // label2 is text align right
-          onPress={() => navigation.navigate("MyCart")}
+          onPress={() => navigation.navigate("MyCart", { foodItem })}
         />
       </View>
     );

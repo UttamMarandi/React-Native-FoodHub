@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
 
 import {
@@ -14,15 +14,44 @@ import { COLORS, FONTS, SIZES, dummyData, icons } from "../../constants";
 
 const MyCart = ({ navigation }) => {
   const [myCartList, setMyCartList] = useState(dummyData.myCart);
+  const [subTotalSum, setTotalCartSum] = useState(0);
+  const [shippingFee, setShippingFee] = useState(2.45);
 
-  let totalPrice;
-  console.log("myCartList", myCartList);
+  useEffect(() => {
+    // this will update the total values on first run , need to run only once
+
+    const myCartTotalArray = myCartList.map((item) => item.price * item.qty);
+
+    let sum = 0;
+    for (let i = 0; i < myCartTotalArray.length; i++) {
+      console.log(myCartTotalArray[i]);
+      sum = sum + myCartTotalArray[i];
+    }
+    setTotalCartSum(sum);
+  }, []);
+
+  let totalArray = [];
 
   // Handler
   function updateQuantityHandler(newQty, id) {
     const newMyCartList = myCartList.map((item) =>
       item.id === id ? { ...item, qty: newQty } : item
     );
+
+    // Each time the quantity is updated this will run
+
+    const myCartTotalArray = newMyCartList.map((item) => item.price * item.qty);
+    let sum = 0;
+    for (let i = 0; i < myCartTotalArray.length; i++) {
+      console.log(myCartTotalArray[i]);
+      sum = sum + myCartTotalArray[i];
+    }
+
+    setTotalCartSum(sum);
+
+    // let total = myCartTotalArray.reduce((a, b) => a + b, 0);
+    // setTotalCartSum(total);
+    // console.log("totalCartSum", totalCartSum);
 
     setMyCartList(newMyCartList);
   }
@@ -133,9 +162,9 @@ const MyCart = ({ navigation }) => {
                   backgroundColor: COLORS.white,
                 }}
                 value={data.item.qty}
-                onAdd={() =>
-                  updateQuantityHandler(data.item.qty + 1, data.item.id)
-                }
+                onAdd={() => {
+                  updateQuantityHandler(data.item.qty + 1, data.item.id);
+                }}
                 onMinus={() => {
                   if (data.item.qty > 1) {
                     updateQuantityHandler(data.item.qty - 1, data.item.id);
@@ -179,9 +208,9 @@ const MyCart = ({ navigation }) => {
 
       {/* Footer */}
       <FooterTotal
-        subtotal={37.97}
-        shippingFee={0.0}
-        total={37.97}
+        subtotal={subTotalSum}
+        shippingFee={shippingFee}
+        total={subTotalSum + shippingFee}
         onPress={() => navigation.navigate("MyCard")}
       />
     </View>
