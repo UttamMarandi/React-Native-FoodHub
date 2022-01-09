@@ -10,7 +10,7 @@ const TwoPointSlider = ({
   prefix,
   postfix,
   onValuesChange,
-  enabled = false,
+  enabled = true,
 }) => {
   return (
     <MultiSlider

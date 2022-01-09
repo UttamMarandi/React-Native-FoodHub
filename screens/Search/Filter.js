@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { View, Text, FlatList } from "react-native";
+import { View, Text, FlatList, ScrollView } from "react-native";
+import { FilterModal } from "..";
 import {
   CartQuantityButton,
   Header,
   HorizontalFoodCard,
   IconButton,
+  TextButton,
   TwoPointSlider,
 } from "../../components";
 import { COLORS, FONTS, icons, SIZES, dummyData } from "../../constants";
@@ -20,6 +22,7 @@ import { COLORS, FONTS, icons, SIZES, dummyData } from "../../constants";
 
 const Filter = ({ navigation }) => {
   // states
+  const [showFilterModal, setShowFilterModal] = useState(false);
   let allMenuItems = dummyData.menu.find((item) => item.name == "All");
 
   const { list } = allMenuItems;
@@ -62,21 +65,27 @@ const Filter = ({ navigation }) => {
     );
   }
 
-  //   function renderFilters() {
-  //     return (
-  //       <Section title="Distance">
-  //         <View style={{ alignItems: "center" }}>
-  //           <TwoPointSlider
-  //             values={[3, 10]}
-  //             min={1}
-  //             max={20}
-  //             postfix="km"
-  //             onValuesChange={(values) => console.log(values)}
-  //           />
-  //         </View>
-  //       </Section>
-  //     );
-  //   }
+  function renderFooter() {
+    return (
+      <View
+        style={{
+          paddingTop: SIZES.radius,
+          paddingBottom: SIZES.padding,
+          paddingHorizontal: SIZES.padding,
+        }}
+      >
+        <TextButton
+          buttonContainerStyle={{
+            height: 60,
+            borderRadius: SIZES.radius,
+            backgroundColor: COLORS.primary,
+          }}
+          onPress={() => setShowFilterModal(true)}
+          label="Apply Filters"
+        />
+      </View>
+    );
+  }
   return (
     <View
       style={{
@@ -87,7 +96,17 @@ const Filter = ({ navigation }) => {
       {/* Header */}
       {renderHeader()}
 
+      {/* Filter modal */}
+      {showFilterModal && (
+        <FilterModal
+          isVisible={showFilterModal}
+          onClose={() => setShowFilterModal(false)}
+          navigation={navigation}
+        />
+      )}
+
       {/* Your filters */}
+
       <FlatList
         data={menuList}
         keyExtractor={(item) => `${item.id}`}
@@ -111,8 +130,11 @@ const Filter = ({ navigation }) => {
             />
           );
         }}
-        ListFooterComponent={() => <View style={{ height: 100 }} />}
+        // ListFooterComponent={() => <View style={{ height: 100 }} />}
       />
+
+      {/* render footer */}
+      {renderFooter()}
     </View>
   );
 };
