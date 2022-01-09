@@ -4,7 +4,8 @@ import { View, Text, BackHandler, Image } from "react-native";
 import { TextButton } from "../../components";
 import { FONTS, SIZES, icons, COLORS, images } from "../../constants";
 
-const Success = ({ navigation }) => {
+const Success = ({ navigation, route }) => {
+  console.log("route", route.params);
   useEffect(() => {
     const backHandler = BackHandler.addEventListener(
       "hardwareBackPress",

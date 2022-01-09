@@ -30,6 +30,7 @@ import Otp from "./screens/Authentication/Otp";
 import ForgotPassword from "./screens/Authentication/ForgotPassword";
 import MainLayout from "./screens/MainLayout";
 import Search from "./screens/Search/Search";
+import Filter from "./screens/Search/Filter";
 
 const Stack = createStackNavigator();
 
@@ -60,6 +61,8 @@ const App = () => {
           <Stack.Screen name="Map" component={Map} />
 
           <Stack.Screen name="DeliveryStatus" component={DeliveryStatus} />
+
+          <Stack.Screen name="Filter" component={Filter} />
 
           <Stack.Screen
             name="Success"

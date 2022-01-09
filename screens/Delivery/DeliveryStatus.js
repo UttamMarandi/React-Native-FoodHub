@@ -162,9 +162,9 @@ const DeliveryStatus = ({ navigation }) => {
                 borderRadius: SIZES.base,
                 backgroundColor: COLORS.lightGray2,
               }}
-              label="Cancel"
+              label="Home"
               labelStyle={{ color: COLORS.primary }}
-              onPress={() => navigation.navigate("FoodDetail")}
+              onPress={() => navigation.navigate("Home")}
             />
             {/* MapView */}
             <TextIconButton

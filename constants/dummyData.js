@@ -98,6 +98,11 @@ const menu = [
     name: "Recommended",
     list: [hamburger, hotTacos, wrapSandwich],
   },
+  {
+    id: 7,
+    name: "All",
+    list: [vegBiryani, hamburger, hotTacos, wrapSandwich],
+  },
 ];
 
 const sizes = [
@@ -206,7 +211,6 @@ const fromLocs = [
 
 export default {
   vegBiryani,
-
   myProfile,
   categories,
   menu,

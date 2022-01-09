@@ -10,6 +10,7 @@ const TwoPointSlider = ({
   prefix,
   postfix,
   onValuesChange,
+  enabled = false,
 }) => {
   return (
     <MultiSlider
@@ -42,7 +43,7 @@ const TwoPointSlider = ({
                 borderRadius: 15,
                 borderWidth: 4,
                 borderColor: COLORS.white,
-                backgroundColor: COLORS.primary,
+                backgroundColor: enabled ? COLORS.primary : COLORS.gray2,
                 ...styles.shadow,
               }}
             />
@@ -57,6 +58,8 @@ const TwoPointSlider = ({
         );
       }}
       onValuesChange={(values) => onValuesChange(values)}
+      enabledOne={enabled}
+      enabledTwo={enabled}
     />
   );
 };

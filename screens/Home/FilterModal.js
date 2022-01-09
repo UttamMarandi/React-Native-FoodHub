@@ -282,7 +282,7 @@ const FilterModal = ({ isVisible, onClose, navigation }) => {
                 borderRadius: SIZES.base,
                 backgroundColor: COLORS.primary,
               }}
-              onPress={() => navigation.navigate("Search")}
+              onPress={() => navigation.navigate("Filter")}
             />
           </View>
         </Animated.View>
