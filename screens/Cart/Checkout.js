@@ -60,20 +60,33 @@ const Checkout = ({ navigation, route }) => {
   function renderMyCard() {
     return (
       <View>
-        {selectedCard &&
-          dummyData.myCards.map((item, index) => {
-            return (
-              <CardItem
-                key={`MyCard-${item.id}`}
-                item={item}
-                isSelected={
-                  `${selectedCard?.key}-${selectedCard?.id}` ==
-                  `MyCard-${item.id}`
-                }
-                onPress={() => setSelectedCard({ ...item, key: "MyCard" })}
-              />
-            );
-          })}
+        {selectedCard && (
+          // dummyData.myCards.map((item, index) => {
+          //   return (
+          //     <CardItem
+          //       key={`MyCard-${item.id}`}
+          //       item={item}
+          //       isSelected={
+          //         `${selectedCard?.key}-${selectedCard?.id}` ==
+          //         `MyCard-${item.id}`
+          //       }
+          //       onPress={() => setSelectedCard({ ...item, key: "MyCard" })}
+          //     />
+          //   );
+          // })
+
+          // Only display the card that is selected
+
+          <CardItem
+            key={`MyCard-${selectedCard.id}`}
+            item={selectedCard}
+            isSelected={
+              `${selectedCard?.key}-${selectedCard?.id}` ==
+              `MyCard-${selectedCard.id}`
+            }
+            onPress={() => setSelectedCard({ ...selectedCard, key: "MyCard" })}
+          />
+        )}
       </View>
     );
   }
