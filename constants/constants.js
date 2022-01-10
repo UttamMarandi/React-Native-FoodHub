@@ -33,6 +33,7 @@ const screens = {
   favourite: "Favourite",
   notification: "Notification",
   my_wallet: "My Wallet",
+  hotel_location: "Hotels",
 };
 
 const bottom_tabs = [
@@ -55,6 +56,10 @@ const bottom_tabs = [
   {
     id: 4,
     label: screens.notification,
+  },
+  {
+    id: 5,
+    label: screens.hotel_location,
   },
 ];
 

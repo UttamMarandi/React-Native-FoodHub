@@ -32,6 +32,7 @@ import Search from "./Search/Search";
 import Cart from "./Cart/Cart";
 import Favourite from "./Favourite/Favourite";
 import Notification from "./Notification/Notification";
+import HotelLocation from "./Search/HotelLocation";
 
 const TabButton = ({
   label,
@@ -318,7 +319,7 @@ const MainLayout = ({ navigation, selectedTab, setSelectedTab }) => {
                   <Home navigation={navigation} />
                 )}
                 {item.label == constants.screens.search && (
-                  <Search navigation={navigation} />
+                  <HotelLocation navigation={navigation} />
                 )}
                 {item.label == constants.screens.cart && (
                   <Cart navigation={navigation} />
@@ -374,8 +375,8 @@ const MainLayout = ({ navigation, selectedTab, setSelectedTab }) => {
           />
 
           <TabButton
-            label={constants.screens.search}
-            icon={icons.search}
+            label={constants.screens.hotel_location}
+            icon={icons.hotel}
             isFocused={selectedTab == constants.screens.search}
             onPress={() => setSelectedTab(constants.screens.search)}
             outerContainerStyle={searchFlexStyle}
