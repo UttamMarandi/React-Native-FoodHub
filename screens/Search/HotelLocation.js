@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
-import { View, Text } from "react-native";
-import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
-import { FONTS, icons } from "../../constants";
+import { View, Text, StyleSheet, Dimensions } from "react-native";
+import MapView, { Callout, Marker, PROVIDER_GOOGLE } from "react-native-maps";
+import { FONTS, icons, SIZES, COLORS } from "../../constants";
 
 const HotelLocation = ({ navigation }) => {
   const mapView = useRef();
@@ -58,7 +58,15 @@ const HotelLocation = ({ navigation }) => {
           style={{ width: 40, height: 40 }}
           // rotation={angle}
           anchor={{ x: 0, y: 0.5 }}
-        />
+        >
+          <Callout tooltip>
+            <View>
+              <View style={styles.tooltip}>
+                <Text style={{ ...FONTS.h3 }}>Durga Hotel</Text>
+              </View>
+            </View>
+          </Callout>
+        </Marker>
         <Marker
           key={`locNamesteyBaripada`}
           coordinate={locNamesteyBaripada}
@@ -67,7 +75,15 @@ const HotelLocation = ({ navigation }) => {
           style={{ width: 40, height: 40 }}
           // rotation={angle}
           anchor={{ x: 0, y: 0.5 }}
-        />
+        >
+          <Callout tooltip>
+            <View>
+              <View style={styles.tooltip}>
+                <Text style={{ ...FONTS.h3 }}>Durga Hotel</Text>
+              </View>
+            </View>
+          </Callout>
+        </Marker>
         <Marker
           key={`locGoldenInn`}
           coordinate={locGoldenInn}
@@ -76,7 +92,15 @@ const HotelLocation = ({ navigation }) => {
           style={{ width: 40, height: 40 }}
           // rotation={angle}
           anchor={{ x: 0, y: 0.5 }}
-        />
+        >
+          <Callout tooltip>
+            <View>
+              <View style={styles.tooltip}>
+                <Text style={{ ...FONTS.h3 }}>Golden Inn</Text>
+              </View>
+            </View>
+          </Callout>
+        </Marker>
         <Marker
           key={`locBrewbakes`}
           coordinate={locBrewbakes}
@@ -85,7 +109,15 @@ const HotelLocation = ({ navigation }) => {
           style={{ width: 40, height: 40 }}
           // rotation={angle}
           anchor={{ x: 0, y: 0.5 }}
-        />
+        >
+          <Callout tooltip>
+            <View>
+              <View style={styles.tooltip}>
+                <Text style={{ ...FONTS.h3 }}>BrewBakes</Text>
+              </View>
+            </View>
+          </Callout>
+        </Marker>
         <Marker
           key={`locHotelAmbika`}
           coordinate={locHotelAmbika}
@@ -94,7 +126,15 @@ const HotelLocation = ({ navigation }) => {
           style={{ width: 40, height: 40 }}
           // rotation={angle}
           anchor={{ x: 0, y: 0.5 }}
-        />
+        >
+          <Callout tooltip>
+            <View>
+              <View style={styles.tooltip}>
+                <Text style={{ ...FONTS.h3 }}>Hotel Ambika</Text>
+              </View>
+            </View>
+          </Callout>
+        </Marker>
       </MapView>
     );
   }
@@ -106,5 +146,24 @@ const HotelLocation = ({ navigation }) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  plainView: {
+    // width: Dimensions.get("window").width * 0.8,
+    // height: Dimensions.get("window").height * 0.15,
+  },
+  tooltip: {
+    flexDirection: "row",
+    alignSelf: "flex-start",
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 6,
+    borderColor: "#fff",
+    borderWidth: 0.5,
+    padding: 10,
+    width: 150,
+  },
+});
 
 export default HotelLocation;
