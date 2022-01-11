@@ -42,7 +42,6 @@ const HotelLocation = ({ navigation }) => {
   }, []);
 
   function renderMap() {
-    console.log("region", region);
     return (
       <MapView
         ref={mapView}

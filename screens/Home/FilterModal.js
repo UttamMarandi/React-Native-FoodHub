@@ -24,6 +24,7 @@ const FilterModal = ({ isVisible, onClose, navigation }) => {
   const [deliveryTime, setDeliveryTime] = useState("");
   const [ratings, setRatings] = useState("");
   const [tags, setTags] = useState("");
+  const [priceRange, setPriceRange] = useState([10, 50]);
 
   const modalAnimatedValue = useRef(new Animated.Value(0)).current;
 
@@ -117,12 +118,12 @@ const FilterModal = ({ isVisible, onClose, navigation }) => {
       <Section title="Pricing Range">
         <View style={{ alignItems: "center" }}>
           <TwoPointSlider
-            values={[10, 30]}
+            values={[10, 50]}
             min={1}
             max={100}
             prefix="$"
             postfix=""
-            onValuesChange={(values) => console.log(values)}
+            onValuesChange={(values) => setPriceRange(values)}
           />
         </View>
       </Section>
@@ -282,7 +283,10 @@ const FilterModal = ({ isVisible, onClose, navigation }) => {
                 borderRadius: SIZES.base,
                 backgroundColor: COLORS.primary,
               }}
-              onPress={() => navigation.navigate("Filter")}
+              onPress={() => {
+                setShowFilterModal(false);
+                navigation.navigate("Filter", { priceRange });
+              }}
             />
           </View>
         </Animated.View>
@@ -292,3 +296,8 @@ const FilterModal = ({ isVisible, onClose, navigation }) => {
 };
 
 export default FilterModal;
+
+// Functionality Comment
+//Get the price range from filtermodal and show menu items accoording to price range.
+//define the state in Filter Modal itself and pass the value as route.params to the Filter screen.
+//Earlier I was defining state in Filter screen and passing as props to FilterModal component. This will not work as we are traversing to Filter Result screen the moment we apply filters

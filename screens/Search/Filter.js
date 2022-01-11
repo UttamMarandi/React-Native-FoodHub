@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, FlatList, ScrollView } from "react-native";
 import { FilterModal } from "..";
 import {
@@ -20,14 +20,16 @@ import { COLORS, FONTS, icons, SIZES, dummyData } from "../../constants";
 //   );
 // };
 
-const Filter = ({ navigation }) => {
+const Filter = ({ navigation, route }) => {
+  const { priceRange } = route.params;
+  console.log("priceRange", priceRange);
   // states
   const [showFilterModal, setShowFilterModal] = useState(false);
+
   let allMenuItems = dummyData.menu.find((item) => item.name == "All");
 
   const { list } = allMenuItems;
 
-  console.log("list", list);
   const [menuList, setMenuList] = useState(list);
 
   // render
@@ -102,6 +104,7 @@ const Filter = ({ navigation }) => {
           isVisible={showFilterModal}
           onClose={() => setShowFilterModal(false)}
           navigation={navigation}
+          onValuesChange={(value) => setPriceRange(value)}
         />
       )}
 
@@ -112,23 +115,27 @@ const Filter = ({ navigation }) => {
         keyExtractor={(item) => `${item.id}`}
         showsHorizontalScrollIndicator={false}
         renderItem={({ item, index }) => {
-          return (
-            <HorizontalFoodCard
-              containerStyle={{
-                height: 130,
-                alignItems: "center",
-                marginHorizontal: SIZES.padding,
-                marginBottom: SIZES.radius,
-              }}
-              imageStyle={{
-                marginTop: 20,
-                height: 110,
-                width: 110,
-              }}
-              item={item}
-              onPress={() => navigation.navigate("FoodDetail", { item })}
-            />
-          );
+          {
+            if (item.price > priceRange[0] && item.price < priceRange[1]) {
+              return (
+                <HorizontalFoodCard
+                  containerStyle={{
+                    height: 130,
+                    alignItems: "center",
+                    marginHorizontal: SIZES.padding,
+                    marginBottom: SIZES.radius,
+                  }}
+                  imageStyle={{
+                    marginTop: 20,
+                    height: 110,
+                    width: 110,
+                  }}
+                  item={item}
+                  onPress={() => navigation.navigate("FoodDetail", { item })}
+                />
+              );
+            }
+          }
         }}
         // ListFooterComponent={() => <View style={{ height: 100 }} />}
       />

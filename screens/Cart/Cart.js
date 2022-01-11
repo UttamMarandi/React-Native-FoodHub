@@ -49,7 +49,7 @@ const MyCart = ({ navigation }) => {
     const myCartTotalArray = newMyCartList.map((item) => item.price * item.qty);
     let sum = 0;
     for (let i = 0; i < myCartTotalArray.length; i++) {
-      console.log(myCartTotalArray[i]);
+      // console.log(myCartTotalArray[i]);
       sum = sum + myCartTotalArray[i];
     }
 
