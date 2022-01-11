@@ -4,9 +4,14 @@ import { TextButton, LineDivider } from ".";
 import { FONTS, SIZES, COLORS } from "../constants";
 import LinearGradient from "react-native-linear-gradient";
 
-const FooterTotal = ({ subtotal, shippingFee, total, onPress }) => {
+const FooterTotal = ({
+  subtotal,
+  shippingFee,
+  total,
+  onPress,
+  containerStyle,
+}) => {
   return (
-    // <Text>Hello Darlo</Text>
     <View>
       {/* Shadow */}
       <LinearGradient
@@ -30,6 +35,7 @@ const FooterTotal = ({ subtotal, shippingFee, total, onPress }) => {
           borderTopLeftRadius: 20,
           borderTopRightRadius: 20,
           backgroundColor: COLORS.white,
+          ...containerStyle,
         }}
       >
         {/* SUbTotal */}

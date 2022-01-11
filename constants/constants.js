@@ -28,7 +28,7 @@ const onboarding_screens = [
 const screens = {
   main_layout: "MainLayout",
   home: "Home",
-  search: "Search",
+  search: "Hotels nearby",
   cart: "Cart",
   favourite: "Favourite",
   notification: "Notification",
