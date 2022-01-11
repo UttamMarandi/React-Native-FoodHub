@@ -21,6 +21,7 @@ const Section = ({ containerStyle, title, children }) => {
 };
 
 const FilterModal = ({ isVisible, onClose, navigation }) => {
+  const [dummy, setdummy] = useState();
   const [deliveryTime, setDeliveryTime] = useState("");
   const [ratings, setRatings] = useState("");
   const [tags, setTags] = useState("");
@@ -67,7 +68,7 @@ const FilterModal = ({ isVisible, onClose, navigation }) => {
             min={1}
             max={20}
             postfix="km"
-            onValuesChange={(values) => console.log(values)}
+            onValuesChange={(values) => setdummy(values)}
           />
         </View>
       </Section>

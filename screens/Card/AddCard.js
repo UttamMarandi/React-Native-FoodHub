@@ -192,7 +192,7 @@ const AddCard = ({ navigation, route }) => {
               setExpiryDate(value);
               utils.validateInput(value, 5, setExpiryDateError);
             }}
-            errorMsg={setExpiryDateError}
+            errorMsg={expiryDateError}
             appendComponent={
               <FormInputCheck value={expiryDate} error={expiryDateError} />
             }
@@ -291,3 +291,9 @@ export default AddCard;
 // Bug
 //Regex expression not provinding spaces in input field. Although it is working propery when displayed using variable.
 // The cardNumber value gets updated with regex expression and has spaces after every 4 number but there is no space after 4 numbers in input field
+
+// Bug Fix
+//Functions are not valid as a React child.
+//errorMsg={setExpiryDateError}
+//It should be
+//errorMsg={expiryDateError}
