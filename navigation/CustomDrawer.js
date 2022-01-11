@@ -107,16 +107,12 @@ const CustomDrawerContent = ({ navigation, selectedTab, setSelectedTab }) => {
           />
           <CustomDrawerItem
             label={constants.screens.my_wallet}
-            icon={icons.wallet}
-          />
-          <CustomDrawerItem
-            label={constants.screens.notification}
-            icon={icons.notification}
+            icon={icons.hotel}
             onPress={() => {
-              setSelectedTab(constants.screens.notification);
+              setSelectedTab(constants.screens.search);
               navigation.navigate("MainLayout");
             }}
-            isFocused={selectedTab == constants.screens.notification}
+            isFocused={selectedTab == constants.screens.search}
           />
           <CustomDrawerItem
             label={constants.screens.favourite}
@@ -127,6 +123,16 @@ const CustomDrawerContent = ({ navigation, selectedTab, setSelectedTab }) => {
             }}
             isFocused={selectedTab == constants.screens.favourite}
           />
+          <CustomDrawerItem
+            label={constants.screens.notification}
+            icon={icons.notification}
+            onPress={() => {
+              setSelectedTab(constants.screens.notification);
+              navigation.navigate("MainLayout");
+            }}
+            isFocused={selectedTab == constants.screens.notification}
+          />
+
           {/* Line Divider */}
           <View
             style={{
