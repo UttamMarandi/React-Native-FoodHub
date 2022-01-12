@@ -9,6 +9,7 @@ const logo_02 = require("../assets/images/logo_02.png");
 const profile = require("../assets/images/profile.png");
 const success = require("../assets/images/success.png");
 const notification_image = require("../assets/images/notification_image.png");
+const golden_inn = require("../assets/images/golden_inn.jpg");
 
 export default {
   background_01,
@@ -16,6 +17,7 @@ export default {
   card,
   favourite_food,
   great_food,
+  golden_inn,
   hot_delivery,
   logo_01,
   logo_02,

@@ -34,18 +34,18 @@ const Map = ({ navigation }) => {
 
   React.useEffect(() => {
     let initialRegion = {
-      latitude: 1.5496614931250685,
-      longitude: 110.36381866919922,
+      latitude: 21.933091390101715,
+      longitude: 86.72629649772016,
       latitudeDelta: 0.02,
       longitudeDelta: 0.02,
     };
 
     let destination = {
-      latitude: 1.5496614931250685,
-      longitude: 110.36381866919922,
+      latitude: 21.9512529217027,
+      longitude: 86.7369908512785,
     };
     setToLoc(destination);
-    setFromLoc(dummyData.fromLocs[1]);
+    setFromLoc(initialRegion);
     setRegion(initialRegion);
   }, []);
 
@@ -57,29 +57,27 @@ const Map = ({ navigation }) => {
         provider={PROVIDER_GOOGLE}
         initialRegion={region}
       >
-        {fromLoc && (
-          <Marker
-            key={`FromLoc`}
-            coordinate={fromLoc}
-            tracksViewChanges={false}
-            icon={icons.burger}
-            style={{ width: 40, height: 40 }}
-            rotation={angle}
-            anchor={{ x: 0, y: 0.5 }}
-          />
-        )}
+        <Marker
+          key={`FromLoc`}
+          coordinate={fromLoc}
+          tracksViewChanges={false}
+          icon={icons.hotel_map}
+          style={{ width: 40, height: 40 }}
+          rotation={angle}
+          anchor={{ x: 0, y: 0.5 }}
+        />
 
         {toLoc && (
           <Marker
             key={"ToLoc"}
             coordinate={toLoc}
             tracksViewChanges={false}
-            icon={icons.location_pin}
+            icon={icons.location_pin_map}
             anchor={{ x: 0.5, y: 0.5 }}
           />
         )}
 
-        <MapViewDirections
+        {/* <MapViewDirections
           origin={fromLoc}
           destination={toLoc}
           apikey={constants.GOOGLE_MAP_API_KEY}
@@ -110,7 +108,7 @@ const Map = ({ navigation }) => {
               setIsReady(true);
             }
           }}
-        />
+        /> */}
       </MapView>
     );
   }
@@ -265,7 +263,7 @@ const Map = ({ navigation }) => {
             }}
           >
             <Image
-              source={images.profile}
+              source={images.golden_inn}
               style={{
                 width: 40,
                 height: 40,
@@ -279,7 +277,7 @@ const Map = ({ navigation }) => {
               }}
             >
               <Text style={{ color: COLORS.white, ...FONTS.h3 }}>
-                Balaji Hotel
+                Golden Inn
               </Text>
               <Text style={{ color: COLORS.white, ...FONTS.body4 }}>
                 Delivery Time

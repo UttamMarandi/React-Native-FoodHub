@@ -51,6 +51,7 @@ const navigator = require("../assets/icons/navigator.png");
 const navigator1 = require("../assets/icons/navigator1.png");
 const hotel = require("../assets/icons/hotel.png");
 const hotel_map = require("../assets/icons/hotel_map.png");
+const location_pin_map = require("../assets/icons/location_pin_map.png");
 
 export default {
   apple,
@@ -104,6 +105,7 @@ export default {
   focus,
   call,
   location_pin,
+  location_pin_map,
   navigator,
   navigator1,
 };

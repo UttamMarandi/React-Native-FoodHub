@@ -237,7 +237,7 @@ const FoodDetail = ({ navigation, route }) => {
         }}
       >
         <Image
-          source={images.profile}
+          source={images.golden_inn}
           style={{ width: 50, height: 50, borderRadius: SIZES.radius }}
         />
         {/* Info */}
@@ -248,7 +248,7 @@ const FoodDetail = ({ navigation, route }) => {
             justifyContent: "center",
           }}
         >
-          <Text style={{ ...FONTS.h3 }}>Balaji Hotel</Text>
+          <Text style={{ ...FONTS.h3 }}>Golden Inn</Text>
           <Text style={{ color: COLORS.gray, ...FONTS.body4 }}>
             1.2 KM away from you
           </Text>

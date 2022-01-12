@@ -4,6 +4,11 @@ const myProfile = {
   address: "Bijay R.C Pur, Ward No - 21, Baripada",
 };
 
+const goldenInn = {
+  name: "Golden Inn",
+  hotel_image: require("../assets/images/golden_inn.jpg"),
+};
+
 const categories = [
   {
     id: 1,
@@ -184,7 +189,6 @@ const menu = [
     name: "Popular",
     list: [
       dumplingSoup,
-      vegBiryani,
       hamburger,
       friedRiceOmlet,
       friedChicken,
@@ -192,6 +196,8 @@ const menu = [
       wrapSandwich,
       boiledRiceEgg,
       veggieTomato,
+      chickenSalad,
+      cucumberSalad,
     ],
   },
   {

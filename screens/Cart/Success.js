@@ -61,7 +61,7 @@ const Success = ({ navigation, route }) => {
         </Text>
       </View>
       <TextButton
-        label="Done"
+        label="Check Order Status"
         buttonContainerStyle={{
           height: 55,
           marginBottom: SIZES.padding,
