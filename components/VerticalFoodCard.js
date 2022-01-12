@@ -46,10 +46,12 @@ const VerticalFoodCard = ({ item, containerStyle, onPress }) => {
 
       {/* Info */}
       <View style={{ alignItems: "center", marginTop: -20 }}>
-        <Text style={{ ...FONTS.h3 }}>{item.name}</Text>
+        <Text style={{ ...FONTS.h3, paddingTop: 20 }}>{item.name}</Text>
         <Text
+          numberOfLines={1}
           style={{
             ...FONTS.body5,
+
             color: COLORS.darkGray2,
             textAlign: "center",
           }}
