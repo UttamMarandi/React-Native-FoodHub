@@ -22,7 +22,7 @@ import { COLORS, FONTS, icons, SIZES, dummyData } from "../../constants";
 
 const Filter = ({ navigation, route }) => {
   const { priceRange } = route.params;
-  console.log("priceRange", priceRange);
+
   // states
   const [showFilterModal, setShowFilterModal] = useState(false);
 

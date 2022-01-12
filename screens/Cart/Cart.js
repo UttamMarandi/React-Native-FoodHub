@@ -30,7 +30,6 @@ const MyCart = ({ navigation }) => {
 
     let sum = 0;
     for (let i = 0; i < myCartTotalArray.length; i++) {
-      console.log(myCartTotalArray[i]);
       sum = sum + myCartTotalArray[i];
     }
     setTotalCartSum(sum);
