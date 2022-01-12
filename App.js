@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import "react-native-gesture-handler";
@@ -45,6 +45,51 @@ const App = () => {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator
+          initialRouteName="SignIn"
+          screenOptions={{ headerShown: false }}
+        >
+          <Stack.Screen name="SignIn" component={SignIn} />
+
+          <Stack.Screen name="OnBoard" component={OnBoarding} />
+
+          <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+
+          <Stack.Screen name="Otp" component={Otp} />
+
+          <Stack.Screen name="SignUp" component={SignUp} />
+
+          <Stack.Screen name="Home" component={CustomDrawer} />
+
+          <Stack.Screen name="CustomDrawer" component={CustomDrawer} />
+
+          <Stack.Screen name="FoodDetail" component={FoodDetail} />
+
+          <Stack.Screen name="Search" component={Search} />
+
+          <Stack.Screen name="MyCart" component={MyCart} />
+
+          <Stack.Screen name="Map" component={Map} />
+
+          <Stack.Screen name="DeliveryStatus" component={DeliveryStatus} />
+
+          <Stack.Screen name="Filter" component={Filter} />
+
+          <Stack.Screen
+            name="Success"
+            component={Success}
+            options={{ gestureEnabled: false }}
+            // gesture enabled works for ios only. if gesture enabled is false , then we can't traverse between screen using gestures.
+            //works for ios only , for android we require Backhandler module
+          />
+
+          <Stack.Screen name="Checkout" component={Checkout} />
+
+          <Stack.Screen name="AddCard" component={AddCard} />
+
+          <Stack.Screen name="MyCard" component={MyCard} />
+        </Stack.Navigator>
+
+        {/* <Stack.Navigator
           screenOptions={{ headerShown: false }}
           initialRouteName={"Home"}
         >
@@ -77,17 +122,7 @@ const App = () => {
           <Stack.Screen name="AddCard" component={AddCard} />
 
           <Stack.Screen name="MyCard" component={MyCard} />
-
-          <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
-
-          <Stack.Screen name="Otp" component={Otp} />
-
-          <Stack.Screen name="SignUp" component={SignUp} />
-
-          <Stack.Screen name="SignIn" component={SignIn} />
-
-          <Stack.Screen name="OnBoard" component={OnBoarding} />
-        </Stack.Navigator>
+        </Stack.Navigator> */}
       </NavigationContainer>
     </Provider>
   );

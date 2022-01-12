@@ -1,7 +1,7 @@
 const myProfile = {
   name: "Uttam Marandi",
   profile_image: require("../assets/images/profile.png"),
-  address: "No. 88, Jln Padungan, Kuching",
+  address: "Bijay R.C Pur, Ward No - 21, Baripada",
 };
 
 const categories = [

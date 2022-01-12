@@ -84,7 +84,7 @@ const Otp = ({ navigation }) => {
             borderRadius: SIZES.radius,
             backgroundColor: COLORS.primary,
           }}
-          onPress={() => console.log("continue")}
+          onPress={() => navigation.navigate("OnBoard")}
         />
         <View style={{ marginTop: SIZES.padding, alignItems: "center" }}>
           <Text style={{ color: COLORS.darkGray, ...FONTS.body3 }}>

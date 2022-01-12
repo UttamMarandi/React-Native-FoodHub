@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import { AuthLayout } from ".";
 import {
@@ -106,7 +106,7 @@ const SignIn = ({ navigation }) => {
         {/* Sign In */}
         <TextButton
           label="Sign In"
-          disabled={isEnableSignIn() ? false : true}
+          // disabled={isEnableSignIn() ? false : true}
           buttonContainerStyle={{
             height: 55,
             alignItems: "center",
@@ -116,6 +116,7 @@ const SignIn = ({ navigation }) => {
               ? COLORS.primary
               : COLORS.transparentPrimary,
           }}
+          onPress={() => navigation.push("OnBoard")}
         />
 
         {/* Sign Up */}
@@ -176,3 +177,11 @@ const SignIn = ({ navigation }) => {
 };
 
 export default SignIn;
+
+// Bug Fix : Warning: Cannot update a component (`ForwardRef(BaseNavigationContainer)`) while rendering a different component (`SignIn`).
+
+//Typing error
+//Inside <TextButton
+//onPress={navigation.push("OnBoard")}
+//it should be
+//onPress={()=>navigation.push("OnBoard")}
