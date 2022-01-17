@@ -155,7 +155,7 @@ const SignUp = ({ navigation }) => {
             Already have an account?
           </Text>
           <TextButton
-            label=" Sign Up"
+            label=" Sign In"
             buttonContainerStyle={{ backgroundColor: null }}
             labelStyle={{ color: COLORS.primary, ...FONTS.h3 }}
             onPress={() => navigation.navigate("SignIn")}

@@ -50,6 +50,8 @@ const Map = ({ navigation }) => {
   }, []);
 
   function renderMap() {
+    console.log("fromLoc", fromLoc);
+
     return (
       <MapView
         ref={mapView}
@@ -343,3 +345,8 @@ const styles = StyleSheet.create({
 });
 
 export default Map;
+
+// Bug Report
+//During first load  shows a warning , Failed prop type: The prop `coordinate` is marked as required in `MapMarker`, but its value is `null`
+//This occurs only on first load , on subsequent loads no such warnings.
+//map functionalities working fine
