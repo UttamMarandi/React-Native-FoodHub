@@ -13,3 +13,7 @@ Foodhub is an app to deliver food to the doorstep from nearby hotels and restaur
 [Redux](https://redux.js.org/introduction/getting-started)
 
 [React-Native-Maps](https://github.com/react-native-maps/react-native-maps)
+
+# Preview
+
+![](https://media.giphy.com/media/n7QLyzCBv0aJ0RKWS4/giphy.gif)
