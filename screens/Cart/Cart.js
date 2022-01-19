@@ -183,7 +183,7 @@ const MyCart = ({ navigation }) => {
         subtotal={subTotalSum}
         shippingFee={shippingFee}
         total={subTotalSum + shippingFee}
-        onPress={() => navigation.navigate("MyCard", { dataSend })}
+        onPress={() => navigation.navigate("SignIn")}
         containerStyle={{ marginBottom: 180 }}
       />
     </View>
