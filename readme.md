@@ -16,4 +16,7 @@ Foodhub is an app to deliver food to the doorstep from nearby hotels and restaur
 
 # Preview
 
-![](https://media.giphy.com/media/n7QLyzCBv0aJ0RKWS4/giphy.gif)
+<p float="left">
+  <img src="/assets/images/foodhub_github_1.gif" width="45%" />
+  <img src="/assets/images/foodhub_github_2.gif" width="45%" /> 
+</p>
